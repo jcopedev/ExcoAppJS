@@ -1,4 +1,6 @@
-Instructions/README
+# ExcoappJS
+
+## Instructions/README
 
 Open CMD prompt<br>
 Navigate to your xampp htdocs folder (Mine is C:\xampp\htdocs, but yours might be different)<br>
