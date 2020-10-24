@@ -26,7 +26,7 @@ http://localhost/excoappjs/excoapp <br>
 http://localhost/excoappjs/excoapp/limitedtimeline.html <br>
 http://localhost/excoappjs/excoapp/authenticate.html<br>
 
-
+<p>
 GitHub Commands:
 1. Adding project to the Github Instructions:
 
@@ -49,3 +49,4 @@ GitHub Commands:
   3. Type 'git add .' to stage the changes
   4. Type 'git commit -m "message"' to commt
   5. Type 'git push origin master' to push the changes
+  </p>
