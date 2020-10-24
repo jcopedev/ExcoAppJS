@@ -25,7 +25,7 @@ pages: <br>
 http://localhost/excoappjs/excoapp <br>
 http://localhost/excoappjs/excoapp/limitedtimeline.html <br>
 http://localhost/excoappjs/excoapp/authenticate.html<br>
-
+<br>
 <span>
 GitHub Commands:
 1. Adding project to the Github Instructions:
