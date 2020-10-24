@@ -25,3 +25,27 @@ pages: <br>
 http://localhost/excoappjs/excoapp <br>
 http://localhost/excoappjs/excoapp/limitedtimeline.html <br>
 http://localhost/excoappjs/excoapp/authenticate.html<br>
+
+
+GitHub Commands:
+1. Adding project to the Github Instructions:
+
+  Resource: https://www.softwarelab.it/2018/10/12/adding-an-existing-project-to-github-using-the-command-line/
+
+  1. Open GitBash
+  2. Type 'cd ' and then drag the project folder for which you want to save versions of. This will bring the gitbash to that directory
+  3. Type 'git init'
+  4. Type 'git add .'
+  5. Type 'git commit -m "message"'
+  6. Type 'git remote add origin "remote repository URL"'
+  7. Type 'git push -u origin master'
+
+
+
+2. Commiting the project to the existing repo
+
+  1. Open the folder where the project resides and open Git Bash
+  2. Type 'git Status' to see the changes
+  3. Type 'git add .' to stage the changes
+  4. Type 'git commit -m "message"' to commt
+  5. Type 'git push origin master' to push the changes
