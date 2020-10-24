@@ -26,7 +26,7 @@ http://localhost/excoappjs/excoapp <br>
 http://localhost/excoappjs/excoapp/limitedtimeline.html <br>
 http://localhost/excoappjs/excoapp/authenticate.html<br>
 
-<p>
+<span>
 GitHub Commands:
 1. Adding project to the Github Instructions:
 
@@ -39,9 +39,9 @@ GitHub Commands:
   5. Type 'git commit -m "message"'
   6. Type 'git remote add origin "remote repository URL"'
   7. Type 'git push -u origin master'
+</span>
 
-
-
+<span>
 2. Commiting the project to the existing repo
 
   1. Open the folder where the project resides and open Git Bash
@@ -49,4 +49,4 @@ GitHub Commands:
   3. Type 'git add .' to stage the changes
   4. Type 'git commit -m "message"' to commt
   5. Type 'git push origin master' to push the changes
-  </p>
+  </span>
