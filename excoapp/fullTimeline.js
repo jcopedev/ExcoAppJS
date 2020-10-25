@@ -6,14 +6,16 @@ var db = firebase.firestore();
 
 //if signed in
 db.collection("posts")
+  .orderBy("credits", "desc")
   .get()
   .then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
-      if (
-        doc.data().credits > doc.data().deletes ||
-        doc.data().deletes == null
-      ) {
-        console.log(`${doc.data().username} => ${doc.data().message}`);
+      if (doc.data().credits > 0) {
+        console.log(
+          `${doc.data().username} => ${doc.data().message}, ${
+            doc.data().dateCreated
+          }`
+        );
         var userName = document.createElement("H2");
         userName.innerHTML = `${doc.data().username}`;
         document.body.appendChild(userName);
@@ -34,13 +36,11 @@ db.collection("posts")
           alert(
             "Warning: You are about to delete this message from the entire website. It will be the last time anyone ever sees it. Are you sure you want to do that? Also, you will probably make the person who wrote this message sad."
           );
-          var delCount = doc.data().deletes;
-          if (delCount == null) {
-            doc.ref.update({ deletes: 1 });
-          } else {
-            doc.ref.update({
-              deletes: firebase.firestore.FieldValue.increment(1),
-            });
+          doc.ref.update({
+            credits: firebase.firestore.FieldValue.increment(-1),
+          });
+          if (doc.data().credits == 0) {
+            doc.ref.update({ dateDeleted: date.now() });
           }
           return false;
         };
