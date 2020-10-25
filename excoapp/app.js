@@ -13,11 +13,10 @@ saveButton.addEventListener("click", function () {
     .add({
       username: "Anonymous",
       message: textToSave,
-      credits: 1,
-      deletes: 0,
+      credits: 5,
       shieldPoints: 0,
       isPaid: false,
-      dateCreated: 0,
+      dateCreated: Date.now(),
       dateDeleted: 0,
       isHidden: false,
     })
