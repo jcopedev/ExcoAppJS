@@ -1,0 +1,71 @@
+body {
+  background-color: #ffffff;
+  font-family: "Ubuntu", sans-serif;
+}
+
+.main {
+  background-color: #343a40;
+  width: 400px;
+  height: 400px;
+  margin: 7em auto;
+  border-radius: 1.5em;
+  box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+}
+.sign {
+  color: #03d6d2;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: bold;
+  margin-top: 0%;
+  padding-top: 0%;
+  font-size: 20px;
+}
+.authImgDivLeft {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+.authImgLeft {
+  position: relative;
+  display: block;
+  float: left;
+  width: 34%;
+  height: 40%;
+}
+.authImgDivRight {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+.authImgRight {
+  position: relative;
+  display: block;
+  float: right;
+  width: 34%;
+  height: 40%;
+}
+.logo {
+  padding-left: 30%;
+  width: auto;
+  height: 40%;
+  margin-bottom: 0%;
+  padding-bottom: 0%;
+}
+.smallLogo {
+  height: 90px;
+  width: auto;
+  padding: 0 0 0 0;
+  margin: 0 0 0 0;
+}
+.avatar {
+  width: 50px;
+  height: 50px;
+  text-align: right;
+}
+.personalInformation {
+  position: relative;
+  padding-top: 10%;
+  display: block;
+  float: right;
+  width: 34%;
+  height: 40%;
+}

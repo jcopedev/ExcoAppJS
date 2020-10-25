@@ -1,22 +1,45 @@
 <!DOCTYPE html>
 <html>
+  <title>Sign in</title>
   <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Exco Authentication Page</title>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-app.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-auth.js"></script>
-	   
+    <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-auth.js"></script>
+
     <script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.css" />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-		<script src="./appconfig.js"></script>
-		<script src="./authenticate.js"></script>
+    <script src="./appconfig.js"></script>
+    <script src="./authenticate.js"></script>
     <!-- The surrounding HTML is left untouched by FirebaseUI.
          Your app may use that space for branding, controls and other customizations.-->
-    <h1>Sign In</h1>
-    <div id="firebaseui-auth-container"></div>
+    <div class="authImgDivRight">
+      <img
+        src="assets/authenticationRight.svg"
+        alt="authentication"
+        class="authImgRight"
+      />
+    </div>
+    <div class="authImgDivLeft">
+      <img
+        src="assets/authenticationLeft.svg"
+        alt="authentication"
+        class="authImgLeft"
+      />
+    </div>
+    <div class="main">
+      <img src="assets/logo.png" align="center" class="logo" />
+      <p class="sign" align="center">Sign in</p>
+      <div id="firebaseui-auth-container"></div>
+    </div>
   </body>
 </html>
