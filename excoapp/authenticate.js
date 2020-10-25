@@ -3,7 +3,7 @@ firebase.initializeApp(firebaseConfig);
 
       // FirebaseUI config.
       var uiConfig = {
-        signInSuccessUrl: 'userProfile.html',
+        signInSuccessUrl: 'UserTimeline.html',
         signInOptions: [
           // Leave the lines as is for the providers you want to offer your users.
           firebase.auth.GoogleAuthProvider.PROVIDER_ID,
