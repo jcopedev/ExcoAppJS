@@ -8,7 +8,7 @@ const inputTextField = document.querySelector("#mainInput");
 const saveButton = document.querySelector("#save");
 
 saveButton.addEventListener("click", function () {
-  const textToSave = inputTextField.value;
+  const textToSave = inputTextField.value.replace(/[^a-zA-Z ]/g, "");
   db.collection("posts")
     .add({
       username: "Anonymous",
@@ -33,3 +33,15 @@ saveButton.addEventListener("click", function () {
 
   console.log("saving exco-message");
 });
+
+var el;                                                    
+
+function countCharacters(e) {                                    
+  var textEntered, countRemaining, counter;          
+  textEntered = document.getElementById('mainInput').value;  
+  counter = (500 - (textEntered.length));
+  countRemaining = document.getElementById('charactersRemaining'); 
+  countRemaining.textContent = counter + " characters remaining...";       
+}
+el = document.getElementById('mainInput');                   
+el.addEventListener('keyup', countCharacters, false);
