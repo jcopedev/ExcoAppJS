@@ -13,7 +13,7 @@ saveButton.addEventListener("click", function () {
     .add({
       username: "Anonymous",
       message: textToSave,
-      credits: 5,
+      credits: 1,
       shieldPoints: 0,
       isPaid: false,
       dateCreated: Date.now(),
@@ -25,7 +25,7 @@ saveButton.addEventListener("click", function () {
       alert(
         "Congratulations! You shared your thoughts with the world. We filed your message in very special location: at the very bottom of the website!"
       );
-      window.location.href = "Usertimeline.html"; //relative to domain
+      window.location.href = "LimitedTimeline.html"; //relative to domain
       //can be change to "LimitedTimeline.html" for testing
     })
     .catch(function (error) {
