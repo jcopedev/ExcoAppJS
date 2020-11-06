@@ -31,7 +31,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   </head>
 
-  <body>
+  <body onload="loadFirstPage()">
     <title>Profile Page</title>
     <div>
       <nav class="navbar navbar-expand-md bg-dark navbar-dark" class="shift">
@@ -55,7 +55,7 @@
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link" href="http://localhost/excoappjs/excoapp"
+              <a class="nav-link" href="index.html"
                 >Create a post</a
               >
             </li>
@@ -88,9 +88,24 @@
         </div>
       </nav>
     </div>
+	
 
-    <script src="./appconfig.js"></script>
-    <script src="./fullTimeline.js"></script>
-    <script src="./userProfile.js"></script>
+<div class="container-fluid" style="margin-top:80px">
+  <div class="container">
+  <div class="row">
+    <div class="col-sm">
+    </div>
+    <div class="col-sm">
+	      <div id="cardContainer"></div>
+		  <div id="moreContainer"></div>
+		  <script src="./appconfig.js"></script>   
+          <script src="./fullTimeline.js"></script>
+		  <script src="./userProfile.js"></script>
+    </div>
+    <div class="col-sm">
+    </div>
+  </div>
+</div>
+</div>
   </body>
 </html>

@@ -47,41 +47,41 @@ function countCharacters(e) {
 el = document.getElementById("mainInput");
 el.addEventListener("keyup", countCharacters, false);
 
-This works but it's annoying when you are working so I commented it out.
-function GetCookie(name) {
-  var arg=name+"=";
-  var alen=arg.length;
-  var clen=document.cookie.length;
-  var i=0;
-  while (i<clen) {
-    var j=i+alen;
-    if (document.cookie.substring(i,j)==arg)
-      return "here";
-    i=document.cookie.indexOf(" ",i)+1;
-    if (i==0) break;
-  }
-  return null;
-}
-function manageVisitor(){
-  //do something if brand new user
-  var visit=GetCookie("FirstTimeVisitCookie");
-  if (visit==null){
-    var expire=new Date();
-    expire=new Date(expire.getTime()+7776000000);
-    document.cookie="FirstTimeVisitCookie=here; expires="+expire + ";path=/";
-  } else {
-    firebase.auth().onAuthStateChanged(function(user) {
-      if (user) {
-        //Do something if user is already logged in
-        window.location.href = 'userProfile.html'; // Returning visitor goes to timeline
-      } else {
-        //Do something if user is returning, but not logged in
-        window.location.href = 'limitedtimeline.html'; // Returning visitor goes to timeline (limitetimeline.html in excoappjs)
-      }
-    });
+//This works but it's annoying when you are working so I commented it out.
+// function GetCookie(name) {
+  // var arg=name+"=";
+  // var alen=arg.length;
+  // var clen=document.cookie.length;
+  // var i=0;
+  // while (i<clen) {
+    // var j=i+alen;
+    // if (document.cookie.substring(i,j)==arg)
+      // return "here";
+    // i=document.cookie.indexOf(" ",i)+1;
+    // if (i==0) break;
+  // }
+  // return null;
+// }
+// function manageVisitor(){
+  // //do something if brand new user
+  // var visit=GetCookie("FirstTimeVisitCookie");
+  // if (visit==null){
+    // var expire=new Date();
+    // expire=new Date(expire.getTime()+7776000000);
+    // document.cookie="FirstTimeVisitCookie=here; expires="+expire + ";path=/";
+  // } else {
+    // firebase.auth().onAuthStateChanged(function(user) {
+      // if (user) {
+        // //Do something if user is already logged in
+        // window.location.href = 'userProfile.html'; // Returning visitor goes to timeline
+      // } else {
+        // //Do something if user is returning, but not logged in
+        // window.location.href = 'limitedtimeline.html'; // Returning visitor goes to timeline (limitetimeline.html in excoappjs)
+      // }
+    // });
 
-  }
-}
-$(document).ready(function(){
-  manageVisitor();
-});
+  // }
+// }
+// $(document).ready(function(){
+  // manageVisitor();
+// });

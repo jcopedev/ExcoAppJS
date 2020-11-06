@@ -4,97 +4,125 @@ firebase.initializeApp(firebaseConfig);
 // Initialize Cloud Firestore through Firebase
 var db = firebase.firestore();
 
-//if signed in
-db.collection("posts")
-  .orderBy("credits", "desc")
-  .get()
-  .then((querySnapshot) => {
-    document.body.style.backgroundImage =
-      "linear-gradient( 135deg, #92FFC0 10%, #002661 100%)";
+var cardContainer = document.getElementById('cardContainer');
 
-    //Overall Timeline Div
-    var timelineDiv = document.createElement("div");
-    timelineDiv.id = "timelineDiv";
-    timelineDiv.className = "timelineDiv";
-    document.body.appendChild(timelineDiv);
+function condescend(){
+	return undefined;
+}
 
-    timelineDiv.style.textAlign = "center";
-    timelineDiv.style.width = "80%";
-    timelineDiv.style.paddingLeft = "20%";
+function hidePost(postId){
+    var selectedPost = document.getElementById(postId);
+	selectedPost.style.display = "none";	
+}
 
-    var count = 1;
-    querySnapshot.forEach((doc) => {
-      if (doc.data().credits > 0) {
-        console.log(
-          `${doc.data().username} => ${doc.data().message}, ${
-            doc.data().dateCreated
-          }`
-        );
+function updateFirebase(postId){
+    db.collection("posts").doc(postId).update({
+		credits: 0,
+		dateDeleted: firebase.firestore.FieldValue.serverTimestamp()
+    });	
+}
 
-        //post Div
-        var postDiv = document.createElement("div");
-        postDiv.id = "postDiv" + count;
-        postDiv.className = "postDiv";
-        document.getElementById("timelineDiv").appendChild(postDiv);
+function deleteWarning(message){
+	alert(`${message} Warning: You are about to delete this message from the entire website. It will be the last time anyone ever sees it. Are you sure you want to do that? Also, you will probably make the person who wrote this message sad.`);
+}
 
-        var userName = document.createElement("h4");
-        userName.innerHTML = `${doc.data().username}`;
-        document.getElementById("postDiv" + count).appendChild(userName);
-        userName.style.textAlign = "left";
-        userName.style.padding = "2.5%";
+function deletePost(postId, message){
+	deleteWarning(message);
+	updateFirebase(postId);
+	hidePost(postId);
+	condescend();
+}
 
-        var messageContent = document.createElement("p");
-        messageContent.innerHTML = `${doc.data().message}`;
-        document.getElementById("postDiv" + count).appendChild(messageContent);
-        messageContent.style.textAlign = "left";
-        messageContent.style.padding = "2.5%";
+function makeCard(postId, userName, message, excoCredits) {
+	htmlString = `<div class = "divBreak" id = ${postId}>
+					<div class="card" style="width: 28rem;">
+					<div class="card-body">
+					<h5 class="card-title">${userName}</h5>
+				    <h6 class="card-subtitle mb-2 text-muted">Exco Credits: ${excoCredits}</h6>
+					<p class="card-text">${message}</p>
+					<button class="float-right" onclick="deletePost('${postId}','${message}')" id = "deleteBtn">Delete This!</button>
+				</div>
+					</div>
+					</br>
+				</div>
+				`
+    return htmlString;
+}
 
-        var creditCount = document.createElement("p");
-        creditCount.innerHTML = `ExcoCredits: ${doc.data().credits}`;
-        document.getElementById("postDiv" + count).appendChild(creditCount);
-        creditCount.style.textAlign = "right";
-        creditCount.style.padding = "2.5%";
+function loadNextPosts(prevBottomPost){
+		var bottomPost;
+		//const convertedDate = prevBottomPost.toDate();
+		var currentDate = new Date(prevBottomPost);
+		db.collection("posts")
+		    .where("credits", "==", 1)
+			.orderBy("dateCreated", "asc")
+			.where("dateCreated", ">", currentDate)
+			.limit(9)
+			.get()
+			.then((querySnapshot) => {
+			querySnapshot.forEach((doc) => {
+				
+				postId = doc.id;
+				userName = doc.data().username.trim();
+				message = doc.data().message.trim();
+				excoCredits = doc.data().credits;
+				bottomPost = doc.data().dateCreated;
+						
+				cardContainer.innerHTML += makeCard(postId, userName, message, excoCredits);             
+						
+			});
+		  }) 
+			.then(() => {
+				moreContainer.innerHTML += makeMoreButton(bottomPost); 
+		});
+	
+}
 
-        var deleteBtn = document.createElement("BUTTON");
-        deleteBtn.innerHTML = "Delete This!";
-        document.getElementById("postDiv" + count).appendChild(deleteBtn);
-        deleteBtn.style.textAlign = "right";
-        deleteBtn.style.display = "inline-block";
-        deleteBtn.style.padding = "0.35em 1.2em";
-        deleteBtn.style.border = "0.1em solid #FFFFFF";
-        deleteBtn.style.margin = "0 0.3em 0.3em 0";
-        deleteBtn.style.borderRadius = "0.12em";
-        deleteBtn.style.boxSizing = "border-box";
-        deleteBtn.style.fontFamily = "'Roboto',sans-serif";
-        deleteBtn.style.fontWeight = "300";
-        deleteBtn.style.color = "#FFFFFF";
-        deleteBtn.style.transition = "all 0.2s";
-        deleteBtn.style.backgroundColor = "#343A40";
+function hideMoreButton(){
+	var selectedMoreButton = document.getElementById('moreButton');
+	selectedMoreButton.style.display = "none";
+	selectedMoreButton.remove();
+}
 
-        var breakElement = document.createElement("br");
-        document.getElementById("postDiv" + count).appendChild(breakElement);
+function loadNextPage(bottomPost){
+	    hideMoreButton();
+		//TO DO: load ad
+		loadNextPosts(bottomPost);
+		return undefined;
+}
 
-        document.getElementById("postDiv" + count).style.border =
-          "5px solid #0BB5B3	";
-        document.getElementById("postDiv" + count).style.boxShadow =
-          "20px 20px rgba(0,0,0,.15)";
-        document.getElementById("postDiv" + count).style.borderRadius = "25px";
-        document.getElementById("postDiv" + count).style.marginBottom = "25px";
-        document.getElementById("postDiv" + count).style.marginTop = "15px";
-        count++;
+function makeMoreButton(bottomPost){
+		return `<div class="container">
+				  <div class="row">
+					<div class="col text-center">
+					  <button class="" id = "moreButton" onclick="loadNextPage('${bottomPost}')">More</button>
+					</div>
+				  </div>
+				</div>
+						`
+		}
 
-        deleteBtn.onclick = function () {
-          alert(
-            "Warning: You are about to delete this message from the entire website. It will be the last time anyone ever sees it. Are you sure you want to do that? Also, you will probably make the person who wrote this message sad."
-          );
-          doc.ref.update({
-            credits: firebase.firestore.FieldValue.increment(-1),
-          });
-          if (doc.data().credits == 0) {
-            doc.ref.update({ dateDeleted: date.now() });
-          }
-          return false;
-        };
-      }
-    });
-  });
+function loadFirstPage(){
+		var bottomPost;
+		db.collection("posts")
+				.where("credits", "==", 1)
+				.orderBy("dateCreated", "asc")
+				.limit(10)
+				.get()
+				.then((querySnapshot) => {
+				querySnapshot.forEach((doc) => {
+				
+					postId = doc.id;
+					userName = doc.data().username.trim();
+					message = doc.data().message.trim();
+					excoCredits = doc.data().credits;
+					bottomPost = doc.data().dateCreated;
+						
+					cardContainer.innerHTML += makeCard(postId, userName, message, excoCredits);
+						
+			});
+		  }) 
+			.then(() => {
+				moreContainer.innerHTML += makeMoreButton(bottomPost); 
+		});		
+	}
