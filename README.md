@@ -51,7 +51,7 @@ GitHub Commands:
   5. Type 'git push origin master' to push the changes
   </span>
   
-  Documentation:
+  Documentation:<br>
 **index.html:**<br> 
 This is where a user goes when they visit the root domain. There is an input text area so they can test the way the site works. Once they have visited once, they will be redirected to the limited timeline, unless they are a user, then they will be directed to the user profile.<br>
 **app:js**<br>
