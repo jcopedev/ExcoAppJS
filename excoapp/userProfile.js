@@ -1,7 +1,7 @@
 //Initialize Firebase
 if (!firebase.apps.length) {
-  firebase.initializeApp({});
-}
+  firebase.initializeApp(firebaseConfig);
+  }
 
 var user = firebase.auth().currentUser;
 var name, email, photoUrl, uid, emailVerified;
