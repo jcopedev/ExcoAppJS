@@ -50,3 +50,27 @@ GitHub Commands:
   4. Type 'git commit -m "message"' to commt
   5. Type 'git push origin master' to push the changes
   </span>
+  
+  Documentation:
+**index.html:** 
+This is where a user goes when they visit the root domain. There is an input text area so they can test the way the site works. Once they have visited once, they will be redirected to the limited timeline, unless they are a user, then they will be directed to the user profile.
+**app:js**
+The javascript file for index.html. This has the javascrip for allowing users to make a post as well as the session data.
+**limitedtimeline.html**(might be changed to visitortimeline.html)
+A user can read the timeline here, but they can't make anymore posts or delete posts. If they try to delete, they will be encouraged to sign up using a modal with a link to the authentication page.
+**limitedtimeline.js**
+This is almost a duplicate of fulltimeline.js, with the added wrinkle that delete is disabled (see above) it might be possible to merge these two timeline files into a single file that is smart enough to tell when a person is logged in or not logged in
+**authenticate.html**
+Here the user is able to sign up or sign into his account. A feature that I thought would be interesting to add would be to change the formatting slightly if we know the person is a non-user, but it might be too much work.
+**authenticate.js**
+Handles the authentication. Mostly provided by firebase. It redirects a user to their usertimeline.html after they have authenticated.
+**usertimeline.html**
+This is the main timeline of the site. A user can read the posts, delete the posts, and also has a input box so they can post to the timeline at any time. The input box follows them as they scroll. It has infinite scroll and it gets slightly red as you get further to the bottom. All posts that have not been deleted will show up here, they are organized from oldest at the top, newest at the bottom.
+**fulltimeline.js** (might be turned into usertimeline.js)
+All the javascript to create the timeline. Including loading posts, deleting and adjusting posts, and the input post tool
+**userprofile.html**
+This is rest of the user profile, other than the timeline. Things found here include the user profile pic--editor, bio, a place for the user's analytics, a place to send feedback
+**userprofile.js**
+The javascript that handles the user profile functionality. Allows user to update and read bio, picture, and displays analytics for user.
+**upcoming files**
+hall of fame, analytics, advertiserprofile, etc.
