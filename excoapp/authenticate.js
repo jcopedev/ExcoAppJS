@@ -51,15 +51,16 @@ function manageVisitor(){
     if (visit==null){
        var expire=new Date();
        expire=new Date(expire.getTime()+7776000000);
-       document.cookie="FirstTimeVisitCookie=here; expires="+expire + ";path=/";
+       document.cookie="FirstTimeVisitCookie=here; expires="+ expire + ";path=/";
    } else {
        firebase.auth().onAuthStateChanged(function(user) {
             if (user) {
                 //Do something if user is already logged in
-                window.location.href = 'userProfile.html'; // Returning visitor goes to timeline
+                window.location.href = 'usertimeline.html'; // Returning visitor goes to timeline
             } else {
                 //Do something if user is returning, but not logged in
-                window.location.href = 'timeline.html'; // Returning visitor goes to timeline (limitetimeline.html in excoappjs)
+				//pass through to authenticate
+                //window.location.href = 'limitedtimeline.html'; // Returning visitor goes to timeline (limitetimeline.html in excoappjs)
             }
         });
 
