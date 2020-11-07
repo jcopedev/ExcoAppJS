@@ -5,7 +5,7 @@ firebase.initializeApp(firebaseConfig);
 var db = firebase.firestore();
 
 const inputTextField = document.querySelector("#mainInput");
-const saveButton = document.querySelector("#save");
+const saveButton = document.querySelector("#saveconfirm");
 
 saveButton.addEventListener("click", function () {
   const textToSave = inputTextField.value.replace(/[^a-zA-Z ]/g, "");

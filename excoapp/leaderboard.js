@@ -38,8 +38,7 @@ function loadFirstPage(){
 					excoCredits = doc.data().credits;
 					bottomPost = doc.data().dateCreated.toDate();
 						
-					cardContainer.innerHTML += makeCard(postId, userName, message, excoCredits);
-						
+					cardContainer.innerHTML += makeCard(postId, userName, message, excoCredits);						
 			});
 		  }) 	
 	}
