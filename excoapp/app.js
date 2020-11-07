@@ -16,16 +16,16 @@ saveButton.addEventListener("click", function () {
       credits: 1,
       shieldPoints: 0,
       isPaid: false,
-      dateCreated: Date.now(),
+      dateCreated: firebase.firestore.FieldValue.serverTimestamp(),
       dateDeleted: 0,
       isHidden: false,
     })
     .then(function (docRef) {
       console.log("Document written with ID: ", docRef.id);
-      alert(
-		"Your message is currently at the very bottom of the message. You can add as many messages as you like, and you can also delete any messages that you don't like." 
-      );
-      window.location.href = "LimitedTimeline.html"; //relative to domain
+      //alert(
+		//"Your message is currently at the very bottom of the message. You can add as many messages as you like, and you can also delete any messages that you don't like." 
+      //);
+      window.location.href = "UserTimeline.html"; //relative to domain
       //can be change to "LimitedTimeline.html" for testing
     })
     .catch(function (error) {

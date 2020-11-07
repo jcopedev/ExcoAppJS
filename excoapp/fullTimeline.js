@@ -18,7 +18,7 @@ function hidePost(postId){
 function updateFirebase(postId){
     db.collection("posts").doc(postId).update({
 		credits: 0,
-		dateDeleted: date.now()
+		dateDeleted: firebase.firestore.FieldValue.serverTimestamp()
     });	
 }
 
@@ -66,7 +66,7 @@ function loadNextPosts(prevBottomPost){
 				userName = doc.data().username.trim();
 				message = doc.data().message.trim();
 				excoCredits = doc.data().credits;
-				bottomPost = doc.data().dateCreated;
+				bottomPost = doc.data().dateCreated.toDate();
 						
 				cardContainer.innerHTML += makeCard(postId, userName, message, excoCredits);             
 						
@@ -116,7 +116,7 @@ function loadFirstPage(){
 					userName = doc.data().username.trim();
 					message = doc.data().message.trim();
 					excoCredits = doc.data().credits;
-					bottomPost = doc.data().dateCreated;
+					bottomPost = doc.data().dateCreated.toDate();
 						
 					cardContainer.innerHTML += makeCard(postId, userName, message, excoCredits);
 						
@@ -126,3 +126,4 @@ function loadFirstPage(){
 				moreContainer.innerHTML += makeMoreButton(bottomPost); 
 		});		
 	}
+
