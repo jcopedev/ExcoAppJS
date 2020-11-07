@@ -18,7 +18,7 @@ function hidePost(postId){
 function updateFirebase(postId){
     db.collection("posts").doc(postId).update({
 		credits: 0,
-		dateDeleted: firebase.firestore.FieldValue.serverTimestamp()
+		dateDeleted: date.now()
     });	
 }
 
