@@ -6,7 +6,11 @@ var db = firebase.firestore();
 
 
 var cardContainer = document.getElementById('cardContainer');
-var BG_COUNT = 255;
+
+//Set the initial background color in RGB
+var RED_COUNT = 255;
+var BLUE_COUNT = 255;
+var GREEN_COUNT = 255;
 
 var user = firebase.auth().currentUser;
 var name, email, photoUrl, uid, emailVerified;
@@ -132,11 +136,19 @@ function loadNextPosts(prevBottomPost){
 }
 
 function incrementRedBackground(){
-		BG_COUNT--;
-		if(BG_COUNT < 0){
-				BG_COUNT = 0;
+		RED_COUNT++;
+		GREEN_COUNT--;
+		BLUE_COUNT--;
+		if(RED_COUNT > 255){
+				RED_COUNT = 255;
 		}
-		document.body.style.backgroundColor = `rgb(255,${BG_COUNT},${BG_COUNT})`;
+		if(GREEN_COUNT < 0){
+				GREEN_COUNT = 0;
+		}
+		if(BLUE_COUNT < 0){
+				BLUE_COUNT = 0;
+		}
+		document.body.style.backgroundColor = `rgb(${RED_COUNT},${GREEN_COUNT},${BLUE_COUNT})`;
 		alert(document.body.style.backgroundColor);
 }
 
@@ -162,6 +174,7 @@ function makeMoreButton(bottomPost){
 					</div>
 				  </div>
 				</div>
+			   </br>
 						`
 		}
 
