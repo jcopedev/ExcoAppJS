@@ -6,6 +6,57 @@ var db = firebase.firestore();
 
 var cardContainer = document.getElementById('cardContainer');
 
+var user = firebase.auth().currentUser;
+var name, email, photoUrl, uid, emailVerified;
+
+firebase.auth().onAuthStateChanged(function (user) {
+  if (user) {
+    name = user.displayName;
+    email = user.email;
+    photoUrl = user.photoURL;
+    emailVerified = user.emailVerified;
+    uid = user.uid; // The user's ID, unique to the Firebase project. Do NOT use
+    // this value to authenticate with your backend server, if
+    // you have one. Use User.getToken() instead.
+    alert(email);
+    //alert(photoUrl);
+  } else {
+    alert("not signed in");
+  }
+});
+
+
+const inputTextField = document.querySelector("#mainInput");
+const saveButton = document.querySelector("#save");
+
+saveButton.addEventListener("click", function () {
+  const textToSave = inputTextField.value.replace(/[^a-zA-Z ]/g, "");
+  db.collection("posts")
+    .add({
+      username: email,
+      message: textToSave,
+      credits: 1,
+      shieldPoints: 0,
+      isPaid: false,
+      dateCreated: firebase.firestore.FieldValue.serverTimestamp(),
+      dateDeleted: 0,
+      isHidden: false,
+    })
+    .then(function (docRef) {
+      console.log("Document written with ID: ", docRef.id);
+      //alert(
+		//"Your message is currently at the very bottom of the message. You can add as many messages as you like, and you can also delete any messages that you don't like." 
+      //);
+      window.location.href = "UserTimeline.html"; //relative to domain
+      //can be change to "LimitedTimeline.html" for testing
+    })
+    .catch(function (error) {
+      console.error("Error adding document: ", error);
+    });
+
+  console.log("saving exco-message");
+});
+
 function condescend(){
 	return undefined;
 }
