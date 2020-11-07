@@ -39,7 +39,7 @@ saveButton.addEventListener("click", function () {
   const textToSave = inputTextField.value.replace(/[^a-zA-Z ]/g, "");
   db.collection("posts")
     .add({
-      username: email,
+      username: name,
       message: textToSave,
       credits: 1,
       shieldPoints: 0,
