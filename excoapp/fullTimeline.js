@@ -4,7 +4,9 @@ firebase.initializeApp(firebaseConfig);
 // Initialize Cloud Firestore through Firebase
 var db = firebase.firestore();
 
+
 var cardContainer = document.getElementById('cardContainer');
+var BG_COUNT = 255;
 
 var user = firebase.auth().currentUser;
 var name, email, photoUrl, uid, emailVerified;
@@ -18,7 +20,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     uid = user.uid; // The user's ID, unique to the Firebase project. Do NOT use
     // this value to authenticate with your backend server, if
     // you have one. Use User.getToken() instead.
-    alert(email);
+    //alert(email);
     //alert(photoUrl);
   } else {
     alert("not signed in");
@@ -129,6 +131,15 @@ function loadNextPosts(prevBottomPost){
 	
 }
 
+function incrementRedBackground(){
+		BG_COUNT--;
+		if(BG_COUNT < 0){
+				BG_COUNT = 0;
+		}
+		document.body.style.backgroundColor = `rgb(255,${BG_COUNT},${BG_COUNT})`;
+		alert(document.body.style.backgroundColor);
+}
+
 function hideMoreButton(){
 	var selectedMoreButton = document.getElementById('moreButton');
 	selectedMoreButton.style.display = "none";
@@ -137,6 +148,7 @@ function hideMoreButton(){
 
 function loadNextPage(bottomPost){
 	    hideMoreButton();
+		incrementRedBackground();
 		//TO DO: load ad
 		loadNextPosts(bottomPost);
 		return undefined;
