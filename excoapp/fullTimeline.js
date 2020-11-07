@@ -126,4 +126,20 @@ function loadFirstPage(){
 				moreContainer.innerHTML += makeMoreButton(bottomPost); 
 		});		
 	}
+	
+var fixmeTop = $('.postingTool').offset().top;
+$(window).scroll(function() {
+    var currentScroll = $(window).scrollTop();
+    if (currentScroll >= fixmeTop) {
+        $('.postingTool').css({
+            position: 'fixed',
+            top: '0',
+            left: '0'
+        });
+    } else {
+        $('.postingTool').css({
+            position: 'static'
+        });
+    }
+});
 
