@@ -55,7 +55,7 @@ GitHub Commands:
 **index.html:**<br> 
 This is where a user goes when they visit the root domain. There is an input text area so they can test the way the site works. After they have visited once, they will be redirected to the limited timeline, unless they are a user, then they will be directed to the user profile.<br>
 **app:js**<br>
-The javascript file for index.html. This has the javascrip for allowing users to make a post as well as the session data.
+The javascript file for index.html. This has the javascrip for allowing users to make a post as well as the session data.<br>
 **limitedtimeline.html**(might be changed to visitortimeline.html)<br>
 A user can read the timeline here, but they can't make anymore posts or delete posts. If they try to delete, they will be encouraged to sign up using a modal with a link to the authentication page.<br>
 **limitedtimeline.js**<br>
