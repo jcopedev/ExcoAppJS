@@ -12,7 +12,6 @@ function makeCard(postId, userName, message, excoCredits) {
 					<h5 class="card-title">${userName}</h5>
 				    <h6 class="card-subtitle mb-2 text-muted">Exco Credits: ${excoCredits}</h6>
 					<p class="card-text">${message}</p>
-					<button class="float-right" onclick="deletePost('${postId}','${message}')" id = "deleteBtn">Delete This!</button>
 				</div>
 					</div>
 					</br>
