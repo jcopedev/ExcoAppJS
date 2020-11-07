@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>User Profile</title>
+    <meta name="description" content="ExcoAppJS" />
+    <meta name="author" content="SitePoint" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!--<link rel="stylesheet" href="css/styles.css?v=1.0"> -->
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+  https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-auth.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </head>
+
+  <body onload="loadFirstPage()">
+    <title>Profile Page</title>
+    <div>
+      <nav class="navbar navbar-expand-md bg-dark navbar-dark" class="shift">
+        <!-- Brand -->
+        <a class="navbar-brand" href="#"
+          ><img src="assets/logo.png" alt="logo" class="smallLogo"
+        /></a>
+
+        <!-- Toggler/collapsibe Button -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#collapsibleNavbar"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar links -->
+
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html"
+                >Create a post</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"></a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="UserTimeline.html">Timeline</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="UserProfile.html">My Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="authenticate.html">Sign In</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="signout.html">Sign Out</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#"
+                ><img src="assets/avatar.png" alt="Avatar" class="avatar"
+              /></a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+	
+
+<div class="container-fluid" style="margin-top:80px">
+  <div class="container">
+  <div class="row">
+    <div class="col-sm">
+	</div>
+    <div class="col-sm">
+	      <div id="cardContainer"></div>
+		  <div id="moreContainer"></div>
+		  <script src="./appconfig.js"></script>   
+          <script src="./leaderboard.js"></script>
+    </div>
+    <div class="col-sm">
+    </div>
+  </div>
+</div>
+</div>
+  </body>
+</html>
