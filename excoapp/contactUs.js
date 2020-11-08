@@ -5,13 +5,16 @@ firebase.initializeApp(firebaseConfig);
 var db = firebase.firestore();
 
 var user = firebase.auth().currentUser;
+var username;
 
 firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
     var signin = document.getElementById('signin');
+    username = user.displayName;
     signin.style.display = "none";
   } else {
     var signout = document.getElementById('signout');
+    username = "Anonymous";
     signout.style.display = "none";
   }
 });
@@ -26,6 +29,7 @@ sendButton.addEventListener("click", function () {
   const feedback = feedbackTextField.value.replace(/[^a-zA-Z ]/g, "");
   db.collection("feedback")
     .add({
+      username: username,
       subject: subjectLine,
       message: feedback,
     })
