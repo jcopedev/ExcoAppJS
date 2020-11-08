@@ -28,6 +28,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     //alert(photoUrl);
   } else {
     alert("not signed in");
+    window.location.href = "./limitedTimeline.html";
   }
 });
 
