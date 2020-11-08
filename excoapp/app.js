@@ -7,6 +7,18 @@ var db = firebase.firestore();
 const inputTextField = document.querySelector("#mainInput");
 const saveButton = document.querySelector("#saveconfirm");
 
+var user = firebase.auth().currentUser;
+
+firebase.auth().onAuthStateChanged(function (user) {
+  if (user) {
+    var signin = document.getElementById('signin');
+    signin.style.display = "none";
+  } else {
+    var signout = document.getElementById('signout');
+    signout.style.display = "none";
+  }
+});
+
 saveButton.addEventListener("click", function () {
   const textToSave = inputTextField.value.replace(/[^a-zA-Z ]/g, "");
   db.collection("posts")

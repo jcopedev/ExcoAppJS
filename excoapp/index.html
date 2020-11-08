@@ -17,6 +17,7 @@
     <!-- TODO: Add SDKs for Firebase products that you want to use
   https://firebase.google.com/docs/web/setup#available-libraries -->
     <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-auth.js"></script>
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -49,9 +50,7 @@
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="index.html"
-              >Create a post</a
-            >
+            <a class="nav-link" href="index.html">Create a post</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#"></a>
@@ -65,13 +64,13 @@
           <li class="nav-item">
             <a class="nav-link" href="contactUs.html">Contact Us</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" id="signin">
             <a class="nav-link" href="authenticate.html">Sign In</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" id="signout">
             <a class="nav-link" href="signout.html">Sign Out</a>
           </li>
-		   <li class="nav-item">
+		      <li class="nav-item">
             <a class="nav-link" href="leaderboard.html">Leaderboard</a>
           </li>
         </ul>

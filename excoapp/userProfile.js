@@ -17,12 +17,14 @@ firebase.auth().onAuthStateChanged(function (user) {
     // you have one. Use User.getToken() instead.
     //alert(name);
 		
-	//this wasn't working outside this scope not sure why
-	document.getElementById("emailContainer").innerHTML += email;
-	document.getElementById("picContainer").innerHTML += photoURL;
+    //this wasn't working outside this scope not sure why
+    document.getElementById("emailContainer").innerHTML += email;
+    document.getElementById("picContainer").innerHTML += photoURL;
     //alert(photoUrl);
+    window.location.href = "./userProfile.html";
   } else {
     alert("not signed in");
+    window.location.href = "./index.html";
   }
 });
 
