@@ -16,14 +16,15 @@ firebase.auth().onAuthStateChanged(function (user) {
     // this value to authenticate with your backend server, if
     // you have one. Use User.getToken() instead.
     alert(name);
+		
+	//this wasn't working outside this scope not sure why
+	document.getElementById("emailContainer").innerHTML += email;
+	document.getElementById("picContainer").innerHTML += photoURL;
     //alert(photoUrl);
   } else {
     alert("not signed in");
   }
 });
 
+document.getElementById("usernameContainer").innerHTML += name;
 
-//this isn't working and I'm not sure why
-document.getElementById("usernameContainer").innerHTML = name;
-document.getElementById("emailContainer").innerHTML = email;
-document.getElementById("picContainer").innerHTML = photoURL;
