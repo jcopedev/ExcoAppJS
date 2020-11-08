@@ -71,9 +71,11 @@ function hidePost(postId) {
   selectedPost.style.display = "none";
 }
 
-function updateFirebase(postId) {
+function updateFirebase(postId, surviveTime) {
+   
   db.collection("posts").doc(postId).update({
     credits: 0,
+	timeAlive: surviveTime,
     dateDeleted: firebase.firestore.FieldValue.serverTimestamp(),
   });
 }
@@ -84,9 +86,30 @@ function deleteWarning(message) {
   );
 }
 
+function getDateCreated(_callback){
+	var createdDate, dateRightNow;
+	var docRef = db.collection("posts").doc(postId);
+
+	docRef.get().then(function(doc) {
+		if (doc.exists) {
+			createdDate = doc.data().dateCreated.seconds;
+			dateRightNow = Math.floor(Date.now() / 1000);
+		} else {
+			console.log("No such document!");
+		}
+		}).catch(function(error) {
+		console.log("Error getting document:", error);
+		}).then(() => {
+			updateFirebase(postId, dateRightNow - createdDate);
+		});
+    _callback();    
+}
+
 function deletePost(postId, message) {
   deleteWarning(message);
-  updateFirebase(postId);
+  getDateCreated(function(postId) {
+        console.log('huzzah, I\'m done!');
+    }); 
   hidePost(postId);
   condescend();
 }
