@@ -15,6 +15,17 @@ var bottomPost;
 var user = firebase.auth().currentUser;
 var name, email, photoUrl, uid, emailVerified;
 
+//Change the background color as your scroll
+const [red, green, blue] = [2, 214, 210];
+const section1 = document.getElementById("mainBody");
+
+window.addEventListener("scroll", () => {
+  let y = 1 + (window.scrollY || window.pageYOffset) / 3000;
+  y = y < 1 ? 1 : y; // ensure y is always >= 1 (due to Safari's elastic scroll)
+  const [r, g, b] = [red / y, green / y, blue / y].map(Math.round);
+  section1.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+});
+
 firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
     name = user.displayName;
@@ -72,10 +83,9 @@ function hidePost(postId) {
 }
 
 function updateFirebase(postId, surviveTime) {
-   
   db.collection("posts").doc(postId).update({
     credits: 0,
-	timeAlive: surviveTime,
+    timeAlive: surviveTime,
     dateDeleted: firebase.firestore.FieldValue.serverTimestamp(),
   });
 }
@@ -86,43 +96,49 @@ function deleteWarning(message) {
   );
 }
 
-function calcSurvival (postId) {
-    var createdDate, dateRightNow;
-	var docRef = db.collection("posts").doc(postId);
+function calcSurvival(postId) {
+  var createdDate, dateRightNow;
+  var docRef = db.collection("posts").doc(postId);
 
-	docRef.get().then(function(doc) {
-		if (doc.exists) {
-			createdDate = doc.data().dateCreated.seconds;
-			dateRightNow = Math.floor(Date.now() / 1000);
-		} else {
-			console.log("No such document!");
-		}
-		}).catch(function(error) {
-		console.log("Error getting document:", error);
-		}).then(() => {
-			updateFirebase(postId, dateRightNow - createdDate);
-	  });
+  docRef
+    .get()
+    .then(function (doc) {
+      if (doc.exists) {
+        createdDate = doc.data().dateCreated.seconds;
+        dateRightNow = Math.floor(Date.now() / 1000);
+      } else {
+        console.log("No such document!");
+      }
+    })
+    .catch(function (error) {
+      console.log("Error getting document:", error);
+    })
+    .then(() => {
+      updateFirebase(postId, dateRightNow - createdDate);
+    });
 }
 
-function handleUpdate (callback) {
-    callback (arguments[1]);
+function handleUpdate(callback) {
+  callback(arguments[1]);
 }
 
-function deletePost(postId, message) {  
+function deletePost(postId, message) {
   deleteWarning(message);
-  handleUpdate (calcSurvival, postId); 
+  handleUpdate(calcSurvival, postId);
   hidePost(postId);
   condescend();
 }
 
 function makeCard(postId, userName, message, excoCredits) {
-  htmlString = `<div class = "divBreak" id = ${postId}>
-					<div class="card" style="width: 28rem;">
-					<div class="card-body">
+  htmlString = `<div class = "divBreak" id = ${postId} >
+					<div class="card" style="width: 28rem;  background-color: #41403E; border:solid 7px #41403E; border-radius: 25px;  box-shadow: 20px 38px 34px -26px hsla(0,0%,0%,.2);
+          border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;">
+					<div class="card-body" style="background-color:  white; border:solid 7px #41403E;border-radius: 25px;  box-shadow: 20px 38px 34px -26px hsla(0,0%,0%,.2);
+          border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;" >
 					<h5 class="card-title">${userName}</h5>
 				    <h6 class="card-subtitle mb-2 text-muted">Exco Credits: ${excoCredits}</h6>
 					<p class="card-text">${message}</p>
-					<button class="float-right" onclick="deletePost('${postId}','${message}')" id = "deleteBtn">Delete This!</button>
+					<button class="float-right" onclick="deletePost('${postId}','${message}')" id = "deleteBtn" style="font-weight: bold; color: white; background-color: #666462;">Delete This!</button>
 				</div>
 					</div>
 					</br>
@@ -135,6 +151,7 @@ function loadNextPosts(/*prevBottomPost*/) {
   // var bottomPost;
   //const convertedDate = prevBottomPost.toDate();
   // var currentDate = new Date(prevBottomPost);
+
   db.collection("posts")
     .where("credits", "==", 1)
     .orderBy("dateCreated", "asc")
@@ -159,25 +176,26 @@ function loadNextPosts(/*prevBottomPost*/) {
       });
     })
     .then(() => {
-      moreContainer.innerHTML += makeMoreButton(/*bottomPost*/);
+      //moreContainer.innerHTML += makeMoreButton(/*bottomPost*/);
     });
 }
 
 function incrementRedBackground() {
-  RED_COUNT++;
-  GREEN_COUNT--;
-  BLUE_COUNT--;
-  if (RED_COUNT > 255) {
-    RED_COUNT = 255;
-  }
-  if (GREEN_COUNT < 0) {
-    GREEN_COUNT = 0;
-  }
-  if (BLUE_COUNT < 0) {
-    BLUE_COUNT = 0;
-  }
-  document.body.style.backgroundColor = `rgb(${RED_COUNT},${GREEN_COUNT},${BLUE_COUNT})`;
-  alert(document.body.style.backgroundColor);
+  // RED_COUNT++;
+  // GREEN_COUNT--;
+  // BLUE_COUNT--;
+  // if (RED_COUNT > 255) {
+  //   RED_COUNT = 255;
+  // }
+  // if (GREEN_COUNT < 0) {
+  //   GREEN_COUNT = 0;
+  // }
+  // if (BLUE_COUNT < 0) {
+  //   BLUE_COUNT = 0;
+  // }
+  // document.body.style.backgroundColor = "Red";
+  // // alert(document.body.style.backgroundColor);
+  // document.getElementById("mainBody").style.backgroundColor = "Red";
 }
 
 function hideMoreButton() {
@@ -186,8 +204,16 @@ function hideMoreButton() {
   selectedMoreButton.remove();
 }
 
+$(window).scroll(function () {
+  // each time the scroll event is triggered
+  if ($(window).scrollTop() + screen.height > $("body").height()) {
+    // if scroll has reached the bottom, execute this
+    loadNextPage();
+  }
+});
+
 function loadNextPage(/*bottomPost*/) {
-  hideMoreButton();
+  //hideMoreButton();
   incrementRedBackground();
   //TO DO: load ad
   loadNextPosts(/*bottomPost*/);
@@ -208,6 +234,17 @@ function makeMoreButton(/*bottomPost*/) {
 
 function loadFirstPage() {
   // var bottomPost;
+  document.getElementById("mainBody").style.backgroundColor =
+    "rgb(2, 214, 210)";
+
+  // document.getElementById("postingTool").style.position = "fixed";
+  // document.getElementById("postingTool").style.top = "30";
+  // document.getElementById("postingTool").style.left = "0";
+  // $(".postingTool").css({
+  //   position: "fixed",
+  //   top: "0",
+  //   left: "0",
+  // });
   db.collection("posts")
     .where("credits", "==", 1)
     .orderBy("dateCreated", "asc")
@@ -232,7 +269,7 @@ function loadFirstPage() {
     })
     .then(() => {
       console.log("last", bottomPost);
-      moreContainer.innerHTML += makeMoreButton(bottomPost);
+      //moreContainer.innerHTML += makeMoreButton(bottomPost);
     });
 }
 

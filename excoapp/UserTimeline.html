@@ -31,7 +31,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   </head>
 
-  <body onload="loadFirstPage()">
+  <body id="mainBody"  onload="loadFirstPage()">
     <title>Profile Page</title>
     <div>
       <nav class="navbar navbar-expand-md bg-dark navbar-dark" class="shift">
@@ -118,14 +118,21 @@
   <div class="container">
   <div class="row">
     <div class="col-sm">
-	<div class = "postingTool">
-					<div class="card" style="width: 28rem;">
+	<div class = "postingTool" id="postingTool">
+					<div class="card" style="width: 28rem;
+          border-radius: 0px 58px 0px 58px;
+          -moz-border-radius: 0px 58px 0px 58px;
+          -webkit-border-radius: 0px 58px 0px 58px;
+          border: 0px solid #000000;
+          -webkit-box-shadow: 2px 2px 26px -9px rgba(0,0,0,0.75);
+-moz-box-shadow: 2px 2px 26px -9px rgba(0,0,0,0.75);
+box-shadow: 2px 2px 26px -9px rgba(0,0,0,0.75);">
 					<div class="card-body">
-					<h5 class="card-title">Post Tool</h5>
-				    <textarea id="mainInput" rows="4" cols="50">Share more of your thoughts....</textarea>
-					    <div id="Prompt Tool" class="carousel slide z-depth-1-half" data-ride="carousel">
+					<h5 class="card-title" style="color: #02D6D2; font-weight: bold;">Create Post</h5>
+				    <textarea id="mainInput" rows="4" cols="50" placeholder="Share more of your thoughts...."></textarea>
+					    <div id="Prompt Tool" class="carousel slide z-depth-1-half" data-ride="carousel" style="color: #02D6D2; font-weight: bold;">
 						  <div class="carousel-inner">
-							<div class="carousel-item active">
+							<div class="carousel-item active" >
 								<p>Five years from now, I will be.</p>
 							</div>
 							<div class="carousel-item">
@@ -136,7 +143,7 @@
 							</div>
 						  </div>
 						</div>
-					<button class="float-right" id="save"">Share More</button>
+					<button class="float-right" id="save" style="font-weight: bold; color: white; background-color: #02D6D2;border-radius: 25px; padding-left: 15px; padding-right: 15px;">Post</button>
 				</div>
 					</div>
 					</br>
@@ -155,3 +162,4 @@
 </div>
   </body>
 </html>
+
