@@ -86,8 +86,8 @@ function deleteWarning(message) {
   );
 }
 
-function getDateCreated(_callback){
-	var createdDate, dateRightNow;
+function calcSurvival (postId) {
+    var createdDate, dateRightNow;
 	var docRef = db.collection("posts").doc(postId);
 
 	docRef.get().then(function(doc) {
@@ -101,15 +101,17 @@ function getDateCreated(_callback){
 		console.log("Error getting document:", error);
 		}).then(() => {
 			updateFirebase(postId, dateRightNow - createdDate);
-		});
-    _callback();    
+	  });
+}
+
+function handleUpdate (callback) {
+    callback (arguments[1]);
 }
 
 function deletePost(postId, message) {
+  
   deleteWarning(message);
-  getDateCreated(function(postId) {
-        console.log('huzzah, I\'m done!');
-    }); 
+  handleUpdate (calcSurvival, postId); 
   hidePost(postId);
   condescend();
 }
