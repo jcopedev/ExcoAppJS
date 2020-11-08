@@ -4,6 +4,17 @@ firebase.initializeApp(firebaseConfig);
 // Initialize Cloud Firestore through Firebase
 var db = firebase.firestore();
 
+var user = firebase.auth().currentUser;
+
+firebase.auth().onAuthStateChanged(function (user) {
+  if (user) {
+    var signin = document.getElementById('signin');
+    signin.style.display = "none";
+  } else {
+    var signout = document.getElementById('signout');
+    signout.style.display = "none";
+  }
+});
 
 function makeCard(postId, userName, message, excoCredits) {
 	htmlString = `<div class = "divBreak" id = ${postId}>
