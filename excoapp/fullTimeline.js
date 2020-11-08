@@ -4,13 +4,13 @@ firebase.initializeApp(firebaseConfig);
 // Initialize Cloud Firestore through Firebase
 var db = firebase.firestore();
 
-
-var cardContainer = document.getElementById('cardContainer');
+var cardContainer = document.getElementById("cardContainer");
 
 //Set the initial background color in RGB
 var RED_COUNT = 255;
 var BLUE_COUNT = 255;
 var GREEN_COUNT = 255;
+var bottomPost;
 
 var user = firebase.auth().currentUser;
 var name, email, photoUrl, uid, emailVerified;
@@ -31,7 +31,6 @@ firebase.auth().onAuthStateChanged(function (user) {
   }
 });
 
-
 const inputTextField = document.querySelector("#mainInput");
 const saveButton = document.querySelector("#save");
 
@@ -51,7 +50,7 @@ saveButton.addEventListener("click", function () {
     .then(function (docRef) {
       console.log("Document written with ID: ", docRef.id);
       //alert(
-		//"Your message is currently at the very bottom of the message. You can add as many messages as you like, and you can also delete any messages that you don't like." 
+      //"Your message is currently at the very bottom of the message. You can add as many messages as you like, and you can also delete any messages that you don't like."
       //);
       window.location.href = "UserTimeline.html"; //relative to domain
       //can be change to "LimitedTimeline.html" for testing
@@ -63,35 +62,37 @@ saveButton.addEventListener("click", function () {
   console.log("saving exco-message");
 });
 
-function condescend(){
-	return undefined;
+function condescend() {
+  return undefined;
 }
 
-function hidePost(postId){
-    var selectedPost = document.getElementById(postId);
-	selectedPost.style.display = "none";	
+function hidePost(postId) {
+  var selectedPost = document.getElementById(postId);
+  selectedPost.style.display = "none";
 }
 
-function updateFirebase(postId){
-    db.collection("posts").doc(postId).update({
-		credits: 0,
-		dateDeleted: firebase.firestore.FieldValue.serverTimestamp()
-    });	
+function updateFirebase(postId) {
+  db.collection("posts").doc(postId).update({
+    credits: 0,
+    dateDeleted: firebase.firestore.FieldValue.serverTimestamp(),
+  });
 }
 
-function deleteWarning(message){
-	alert(`${message} Warning: You are about to delete this message from the entire website. It will be the last time anyone ever sees it. Are you sure you want to do that? Also, you will probably make the person who wrote this message sad.`);
+function deleteWarning(message) {
+  alert(
+    `${message} Warning: You are about to delete this message from the entire website. It will be the last time anyone ever sees it. Are you sure you want to do that? Also, you will probably make the person who wrote this message sad.`
+  );
 }
 
-function deletePost(postId, message){
-	deleteWarning(message);
-	updateFirebase(postId);
-	hidePost(postId);
-	condescend();
+function deletePost(postId, message) {
+  deleteWarning(message);
+  updateFirebase(postId);
+  hidePost(postId);
+  condescend();
 }
 
 function makeCard(postId, userName, message, excoCredits) {
-	htmlString = `<div class = "divBreak" id = ${postId}>
+  htmlString = `<div class = "divBreak" id = ${postId}>
 					<div class="card" style="width: 28rem;">
 					<div class="card-body">
 					<h5 class="card-title">${userName}</h5>
@@ -102,120 +103,127 @@ function makeCard(postId, userName, message, excoCredits) {
 					</div>
 					</br>
 				</div>
-				`
-    return htmlString;
+				`;
+  return htmlString;
 }
 
-function loadNextPosts(prevBottomPost){
-		var bottomPost;
-		//const convertedDate = prevBottomPost.toDate();
-		var currentDate = new Date(prevBottomPost);
-		db.collection("posts")
-		    .where("credits", "==", 1)
-			.orderBy("dateCreated", "asc")
-			.where("dateCreated", ">", currentDate)
-			.limit(9)
-			.get()
-			.then((querySnapshot) => {
-			querySnapshot.forEach((doc) => {
-				
-				postId = doc.id;
-				userName = doc.data().username.trim();
-				message = doc.data().message.trim();
-				excoCredits = doc.data().credits;
-				bottomPost = doc.data().dateCreated.toDate();
-						
-				cardContainer.innerHTML += makeCard(postId, userName, message, excoCredits);             
-						
-			});
-		  }) 
-			.then(() => {
-				moreContainer.innerHTML += makeMoreButton(bottomPost); 
-		});
-	
+function loadNextPosts(/*prevBottomPost*/) {
+  // var bottomPost;
+  //const convertedDate = prevBottomPost.toDate();
+  // var currentDate = new Date(prevBottomPost);
+  db.collection("posts")
+    .where("credits", "==", 1)
+    .orderBy("dateCreated", "asc")
+    .startAfter(bottomPost)
+    .limit(9)
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        postId = doc.id;
+        userName = doc.data().username.trim();
+        message = doc.data().message.trim();
+        excoCredits = doc.data().credits;
+        bottomPost = doc;
+        // bottomPost = doc.data().dateCreated.toDate();
+
+        cardContainer.innerHTML += makeCard(
+          postId,
+          userName,
+          message,
+          excoCredits
+        );
+      });
+    })
+    .then(() => {
+      moreContainer.innerHTML += makeMoreButton(/*bottomPost*/);
+    });
 }
 
-function incrementRedBackground(){
-		RED_COUNT++;
-		GREEN_COUNT--;
-		BLUE_COUNT--;
-		if(RED_COUNT > 255){
-				RED_COUNT = 255;
-		}
-		if(GREEN_COUNT < 0){
-				GREEN_COUNT = 0;
-		}
-		if(BLUE_COUNT < 0){
-				BLUE_COUNT = 0;
-		}
-		document.body.style.backgroundColor = `rgb(${RED_COUNT},${GREEN_COUNT},${BLUE_COUNT})`;
-		alert(document.body.style.backgroundColor);
+function incrementRedBackground() {
+  RED_COUNT++;
+  GREEN_COUNT--;
+  BLUE_COUNT--;
+  if (RED_COUNT > 255) {
+    RED_COUNT = 255;
+  }
+  if (GREEN_COUNT < 0) {
+    GREEN_COUNT = 0;
+  }
+  if (BLUE_COUNT < 0) {
+    BLUE_COUNT = 0;
+  }
+  document.body.style.backgroundColor = `rgb(${RED_COUNT},${GREEN_COUNT},${BLUE_COUNT})`;
+  alert(document.body.style.backgroundColor);
 }
 
-function hideMoreButton(){
-	var selectedMoreButton = document.getElementById('moreButton');
-	selectedMoreButton.style.display = "none";
-	selectedMoreButton.remove();
+function hideMoreButton() {
+  var selectedMoreButton = document.getElementById("moreButton");
+  selectedMoreButton.style.display = "none";
+  selectedMoreButton.remove();
 }
 
-function loadNextPage(bottomPost){
-	    hideMoreButton();
-		incrementRedBackground();
-		//TO DO: load ad
-		loadNextPosts(bottomPost);
-		return undefined;
+function loadNextPage(/*bottomPost*/) {
+  hideMoreButton();
+  incrementRedBackground();
+  //TO DO: load ad
+  loadNextPosts(/*bottomPost*/);
+  return undefined;
 }
 
-function makeMoreButton(bottomPost){
-		return `<div class="container">
+function makeMoreButton(/*bottomPost*/) {
+  return `<div class="container">
 				  <div class="row">
 					<div class="col text-center">
-					  <button class="" id = "moreButton" onclick="loadNextPage('${bottomPost}')">More</button>
+					  <button class="" id = "moreButton" onclick="loadNextPage()">More</button>
 					</div>
 				  </div>
 				</div>
 			   </br>
-						`
-		}
+						`;
+}
 
-function loadFirstPage(){
-		var bottomPost;
-		db.collection("posts")
-				.where("credits", "==", 1)
-				.orderBy("dateCreated", "asc")
-				.limit(10)
-				.get()
-				.then((querySnapshot) => {
-				querySnapshot.forEach((doc) => {
-				
-					postId = doc.id;
-					userName = doc.data().username.trim();
-					message = doc.data().message.trim();
-					excoCredits = doc.data().credits;
-					bottomPost = doc.data().dateCreated.toDate();
-						
-					cardContainer.innerHTML += makeCard(postId, userName, message, excoCredits);
-						
-			});
-		  }) 
-			.then(() => {
-				moreContainer.innerHTML += makeMoreButton(bottomPost); 
-		});		
-	}
-	
-var fixmeTop = $('.postingTool').offset().top;
-$(window).scroll(function() {
-    var currentScroll = $(window).scrollTop();
-    if (currentScroll >= fixmeTop) {
-        $('.postingTool').css({
-            position: 'fixed',
-            top: '0',
-            left: '0'
-        });
-    } else {
-        $('.postingTool').css({
-            position: 'static'
-        });
-    }
+function loadFirstPage() {
+  // var bottomPost;
+  db.collection("posts")
+    .where("credits", "==", 1)
+    .orderBy("dateCreated", "asc")
+    .limit(10)
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        postId = doc.id;
+        userName = doc.data().username.trim();
+        message = doc.data().message.trim();
+        excoCredits = doc.data().credits;
+        bottomPost = doc;
+        // bottomPost = doc.data().dateCreated.toDate();
+
+        cardContainer.innerHTML += makeCard(
+          postId,
+          userName,
+          message,
+          excoCredits
+        );
+      });
+    })
+    .then(() => {
+      console.log("last", bottomPost);
+      moreContainer.innerHTML += makeMoreButton(bottomPost);
+    });
+}
+
+var fixmeTop = $(".postingTool").offset().top;
+$(window).scroll(function () {
+  var currentScroll = $(window).scrollTop();
+  if (currentScroll >= fixmeTop) {
+    $(".postingTool").css({
+      position: "fixed",
+      top: "0",
+      left: "0",
+    });
+  } else {
+    $(".postingTool").css({
+      position: "static",
+    });
+  }
 });
-
