@@ -108,8 +108,7 @@ function handleUpdate (callback) {
     callback (arguments[1]);
 }
 
-function deletePost(postId, message) {
-  
+function deletePost(postId, message) {  
   deleteWarning(message);
   handleUpdate (calcSurvival, postId); 
   hidePost(postId);
