@@ -38,7 +38,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     //alert(email);
     //alert(photoUrl);
   } else {
-    alert("not signed in");
+    //alert("not signed in");
     //window.location.href = "./limitedTimeline.html";
   }
 });
@@ -94,9 +94,6 @@ function loadNextPosts(/*prevBottomPost*/) {
           excoCredits
         );
       });
-    })
-    .then(() => {
-      //moreContainer.innerHTML += makeMoreButton(/*bottomPost*/);
     });
 }
 
