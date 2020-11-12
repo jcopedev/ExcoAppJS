@@ -21,7 +21,7 @@ function makeCard(postId, userName, message, excoCredits) {
 					<div class="card" style="width: 28rem;">
 					<div class="card-body">
 					<h5 class="card-title">${userName}</h5>
-				    <h6 class="card-subtitle mb-2 text-muted">Exco Credits: ${excoCredits}</h6>
+				    <h6 class="card-subtitle mb-2 text-muted">Survival Time (sec.): ${excoCredits}</h6>
 					<p class="card-text">${message}</p>
 				</div>
 					</div>
@@ -36,7 +36,7 @@ function loadFirstPage(){
 		var bottomPost;
 		db.collection("posts")
 				.where("credits", "==", 0)
-				.orderBy("dateCreated", "asc")
+				.orderBy("timeAlive", "desc")
 				.limit(50)
 				.get()
 				.then((querySnapshot) => {
@@ -45,10 +45,10 @@ function loadFirstPage(){
 					postId = doc.id;
 					userName = doc.data().username.trim();
 					message = doc.data().message.trim();
-					excoCredits = doc.data().credits;
+					timeAlive = doc.data().timeAlive;
 					bottomPost = doc.data().dateCreated.toDate();
 						
-					cardContainer.innerHTML += makeCard(postId, userName, message, excoCredits);						
+					cardContainer.innerHTML += makeCard(postId, userName, message, timeAlive);						
 			});
 		  }) 	
 	}
