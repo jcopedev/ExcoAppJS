@@ -31,7 +31,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   </head>
 
-  <body onload="loadFirstPage()">
+  <body
+    onload="loadFirstPage()"
+    style="background-image: url(assets/leaderboardBg.png)"
+  >
     <title>Profile Page</title>
     <div>
       <nav class="navbar navbar-expand-md bg-dark navbar-dark" class="shift">
@@ -89,23 +92,31 @@
         </div>
       </nav>
     </div>
-	
 
-<div class="container-fluid" style="margin-top:80px">
-  <div class="container">
-  <div class="row">
-    <div class="col-sm">
-	</div>
-    <div class="col-sm">
-	      <div id="cardContainer"></div>
-		  <div id="moreContainer"></div>
-		  <script src="./appconfig.js"></script>   
-      <script src="./leaderboard.js"></script>
+    <div class="container-fluid" style="margin-top: 80px">
+      <!-- <div class="authImgDivRight">
+        <img
+          src="assets/leaderboard.svg"
+          alt="authentication"
+          class="authImgRight"
+        />
+      </div> -->
+      <div class="future-cop">
+        <h3 class="future">Leaderboard</h3>
+        <!-- <h1 class="cop"></h1> -->
+      </div>
+      <div class="container" style="margin-top: -200px">
+        <div class="row">
+          <div class="col-sm"></div>
+          <div class="col-sm">
+            <div id="cardContainer"></div>
+            <div id="moreContainer"></div>
+            <script src="./appconfig.js"></script>
+            <script src="./leaderboard.js"></script>
+          </div>
+          <div class="col-sm"></div>
+        </div>
+      </div>
     </div>
-    <div class="col-sm">
-    </div>
-  </div>
-</div>
-</div>
   </body>
 </html>

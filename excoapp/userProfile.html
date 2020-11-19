@@ -26,6 +26,7 @@
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
     <link rel="stylesheet" href="css/style.css" />
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -54,9 +55,7 @@
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="index.html"
-              >Create a post</a
-            >
+            <a class="nav-link" href="index.html">Create a post</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#"></a>
@@ -73,7 +72,7 @@
           <li class="nav-item">
             <a class="nav-link" href="signout.html">Sign Out</a>
           </li>
-		      <li class="nav-item">
+          <li class="nav-item">
             <a class="nav-link" href="leaderboard.html">Leaderboard</a>
           </li>
         </ul>
@@ -93,17 +92,61 @@
       class="personalInformation"
     />
 
-	<h2>Profile Pic</h2>
-	<div id="picContainer"></div>
-	<h2>User Name</h2>
-	<div id="usernameContainer"></div>
-	<h2>Email</h2>
-	<div id="emailContainer"></div>
-	<h2>Bio</h2>
-	<div id="bioContainer"></div>
-	<h2>Link To Analytics?</h2>
-	
-	
+    <h2>Profile Pic</h2>
+    <div id="picContainer"></div>
+    <h2>User Name</h2>
+    <div id="usernameContainer"></div>
+    <h2>Email</h2>
+    <div id="emailContainer"></div>
+    <h2>Bio</h2>
+    <div id="bioContainer"></div>
+    <h2>Link To Analytics?</h2>
+    <div class="DeleteContainer">
+      <div class="Delete">
+        <p>
+          Delete your existence from the exco app. All your posts and user data
+          will be deleted from our server.
+        </p>
+        <button class="btn danger" data-toggle="modal" data-target="#myModal">
+          Delete Account
+        </button>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Delete Account</h4>
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>
+              Are you sure you want to completely delete your account?<br />Warning:
+              All data will be deleted and can not be retreived
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-dismiss="modal"
+              onclick="signout()"
+            >
+              Delete
+            </button>
+            <button type="button" class="btn btn-info" data-dismiss="modal">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script src="./appconfig.js"></script>
     <script src="./userProfile.js"></script>
   </body>
