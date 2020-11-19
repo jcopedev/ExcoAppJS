@@ -7,6 +7,20 @@
 	<title>Advertiser Application</title>
 	<link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' rel='stylesheet'>
 	<link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css' rel='stylesheet'>
+	    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+  https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-auth.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	<style>* {
     margin: 0;
     padding: 0
@@ -252,9 +266,54 @@ select.list-dt:focus {
 var current_fs, next_fs, previous_fs; //fieldsets
 var opacity;
 
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+// Initialize Cloud Firestore through Firebase
+var db = firebase.firestore();
+
+function addInfoToDatabase () {
+  db.collection("advertiser_application")
+    .add({
+      email: document.getElementById("emailValue").value,
+      name: document.getElementById("nameValue").value,
+      website: document.getElementById("websiteValue").value,
+      productInfo: document.getElementById("productValue").value,
+      firstName: document.getElementById("fnameValue").value,
+      lastName: document.getElementById("lnameValue").value,
+      phone1: document.getElementById("phnoValue").value,
+      phone2: document.getElementById("emailValue").value,
+	  ccName: document.getElementById("holdernameValue").value,
+	  ccNumber: document.getElementById("cardnoValue").value,
+	  cvc: document.getElementById("cvcValue").value,
+    })
+    .then(function (docRef) {
+      console.log("Document written with ID: ", docRef.id);
+      //alert(
+		//"Your message is currently at the very bottom of the message. You can add as many messages as you like, and you can also delete any messages that you don't like." 
+      //);
+      //window.location.href = "UserTimeline.html"; //relative to domain
+      //can be change to "LimitedTimeline.html" for testing
+    })
+    .catch(function (error) {
+      console.error("Error adding document: ", error);
+    });
+
+  console.log("saving exco-message");
+};
+
+pageCount = 1;
+
 $(".next").click(function(){
 
-alert("");
+pageCount++;
+alert(pageCount);
+if (pageCount === 4){
+	alert(document.getElementById("emailValue").value);
+	addInfoToDatabase();
+}
+
+
 current_fs = $(this).parent();
 next_fs = $(this).parent().next();
 
@@ -280,6 +339,9 @@ duration: 600
 });
 
 $(".previous").click(function(){
+
+pageCount--;
+alert(pageCount);
 
 current_fs = $(this).parent();
 previous_fs = $(this).parent().prev();
@@ -311,9 +373,10 @@ $(this).parent().find('.radio').removeClass('selected');
 $(this).addClass('selected');
 });
 
-object.onclick = function(){myScript};
+//object.onclick = function(){myScript};
 
 $(".saveconfirm").click(function(){
+alert(document.getElementById("emailValue").value);
 alert("send it");
 return false;
 })
@@ -391,13 +454,22 @@ return false;
                             </ul> <!-- fieldsets -->
                             <fieldset>
                                 <div class="form-card">
-                                    <h2 class="fs-title">Account Information</h2> <input type="email" name="email" placeholder="Email" /> <input type="text" name="name" placeholder="Company Name" /> <input type="text" name="website" placeholder="Website" /> <input type="text" name="product" placeholder="What will you be selling?" />
-                                </div> <input type="button" onClick="submitInfo()" name="next" class="next action-button" value="Next Step" />
+                                    <h2 class="fs-title">Account Information</h2> 
+									<input type="email" name="email" id="emailValue" placeholder="Email" /> 
+									<input type="text" name="name" id="nameValue" placeholder="Company Name" /> 
+									<input type="text" name="website" id="websiteValue" placeholder="Website" /> 
+									<input type="text" name="product" id="productValue" placeholder="What will you be selling?" />
+                                </div> <input type="button" name="next" class="next action-button" value="Next Step" />
                             </fieldset>
                             <fieldset>
                                 <div class="form-card">
-                                    <h2 class="fs-title">Personal Information</h2> <input type="text" name="fname" placeholder="First Name" /> <input type="text" name="lname" placeholder="Last Name" /> <input type="text" name="phno" placeholder="Contact No." /> <input type="text" name="phno_2" placeholder="Alternate Contact No." />
-                                </div> <input type="button" name="previous" class="previous action-button-previous" value="Previous" /> <input type="button" name="next" class="next action-button" value="Next Step" />
+                                    <h2 class="fs-title">Personal Information</h2> 
+									<input type="text" name="fname" id="fnameValue" placeholder="First Name" /> 
+									<input type="text" name="lname" id="lnameValue" placeholder="Last Name" /> 
+									<input type="text" name="phno" id="phnoValue" placeholder="Contact No." /> 
+									<input type="text" name="phno_2" id="phno2Value" placeholder="Alternate Contact No." />
+                                </div> <input type="button" name="previous" class="previous action-button-previous" value="Previous" /> 
+								<input type="button" name="next" class="next action-button" value="Next Step" />
                             </fieldset>
                             <fieldset>
                                 <div class="form-card">
@@ -405,10 +477,10 @@ return false;
                                     <div class="radio-group">
                                         <div class='radio' data-value="credit"><img src="https://i.imgur.com/XzOzVHZ.jpg" width="200px" height="100px"></div>
                                         <div class='radio' data-value="paypal"><img src="https://i.imgur.com/jXjwZlj.jpg" width="200px" height="100px"></div> <br>
-                                    </div> <label class="pay">Card Holder Name*</label> <input type="text" name="holdername" placeholder="" />
+                                    </div> <label class="pay">Card Holder Name*</label> <input type="text" name="holdername" id="holdernameValue" placeholder="" />
                                     <div class="row">
-                                        <div class="col-9"> <label class="pay">Card Number*</label> <input type="text" name="cardno" placeholder="" /> </div>
-                                        <div class="col-3"> <label class="pay">CVC*</label> <input type="password" name="cvcpwd" placeholder="***" /> </div>
+                                        <div class="col-9"> <label class="pay">Card Number*</label> <input type="text" name="cardno" id="cardnoValue" placeholder="" /> </div>
+                                        <div class="col-3"> <label class="pay">CVC*</label> <input type="password" name="cvcpwd" id="cvcValue" placeholder="***" /> </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-3"> <label class="pay">Expiry Date*</label> </div>
@@ -453,6 +525,6 @@ return false;
     </div>
 </div>
     <script src="./appconfig.js"></script>
-    <script src="./app.js"></script>
+    <!-- <script src="./app.js"></script> -->
                             </body>
                         </html>
