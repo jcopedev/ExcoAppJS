@@ -56,20 +56,29 @@ window.onclick = function (event) {
   }
 };
 
-// function signout() {
-//   firebase
-//     .auth()
-//     .signOut()
-//     .then(function () {
-//       alert("Success!");
-//       window.location.href = "./limitedtimeline.html";
-//     })
-//     .catch(function (error) {
-//       alert("Error!");
-//       window.location.href = "./userProfile.html";
-//     });
-// }
-
 function deleteAccount() {
-  
+  var user = firebase.auth().currentUser;
+  var db = firebase.firestore();
+
+  var posts = db.collection("posts");
+
+  posts.where("username", "==", user.displayName)
+       .get()
+       .then(querySnapshot => {
+          querySnapshot.forEach((doc) => {
+            doc.ref.delete().then(() => { 
+            console.log("Success!");
+          }).catch(function(error) {
+            console.error("Error deleting: ", error);
+          });
+        });
+        user.delete().then(function() {
+          alert("Your account and posts have been deleted!");
+        }).catch(function(error) {
+          alert(error);
+        });
+        })
+       .catch(function(error) {
+         console.error("Error getting documents: ", error);
+       })
 }
