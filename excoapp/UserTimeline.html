@@ -55,11 +55,6 @@
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link" href="index.html"
-                >Create a post</a
-              >
-            </li>
-            <li class="nav-item">
               <a class="nav-link" href="#"></a>
             </li>
             <li class="nav-item active">
@@ -126,7 +121,8 @@
 box-shadow: 2px 2px 26px -9px rgba(0,0,0,0.75);">
 					<div class="card-body">
 					<h5 class="card-title" style="color: #02D6D2; font-weight: bold;">Create Post</h5>
-				    <textarea id="mainInput" rows="4" cols="50" placeholder="Share more of your thoughts...."></textarea>
+            <textarea id="mainInput" rows="4" cols="50" maxlength="500" placeholder="Share more of your thoughts...."></textarea>
+              <div class="text-count" id="charactersRemaining">500 characters remaining...</div>
 					    <div id="Prompt Tool" class="carousel slide z-depth-1-half" data-ride="carousel" style="color: #02D6D2; font-weight: bold;">
 						  <div class="carousel-inner">
 							<div class="carousel-item active" >

@@ -56,16 +56,20 @@ window.onclick = function (event) {
   }
 };
 
-function signout() {
-  firebase
-    .auth()
-    .signOut()
-    .then(function () {
-      alert("Success!");
-      window.location.href = "./limitedtimeline.html";
-    })
-    .catch(function (error) {
-      alert("Error!");
-      window.location.href = "./userProfile.html";
-    });
+// function signout() {
+//   firebase
+//     .auth()
+//     .signOut()
+//     .then(function () {
+//       alert("Success!");
+//       window.location.href = "./limitedtimeline.html";
+//     })
+//     .catch(function (error) {
+//       alert("Error!");
+//       window.location.href = "./userProfile.html";
+//     });
+// }
+
+function deleteAccount() {
+  
 }

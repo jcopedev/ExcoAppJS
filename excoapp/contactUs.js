@@ -10,8 +10,10 @@ var username;
 firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
     var signin = document.getElementById('signin');
+    var create = document.getElementById('create');
     username = user.displayName;
     signin.style.display = "none";
+    create.style.display = "none";
   } else {
     var signout = document.getElementById('signout');
     username = "Anonymous";

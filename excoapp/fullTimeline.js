@@ -300,3 +300,15 @@ $(window).scroll(function () {
     });
   }
 });
+
+var el;
+
+function countCharacters(e) {
+  var textEntered, countRemaining, counter;
+  textEntered = document.getElementById("mainInput").value;
+  counter = 500 - textEntered.length;
+  countRemaining = document.getElementById("charactersRemaining");
+  countRemaining.textContent = counter + " characters remaining...";
+}
+el = document.getElementById("mainInput");
+el.addEventListener("keyup", countCharacters, false);
