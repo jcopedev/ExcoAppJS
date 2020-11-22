@@ -39,6 +39,19 @@ var btn = document.getElementById("myBtn");
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
+var usernameField = document.getElementById("newUsername");
+
+//email fields
+var newEmailField = document.getElementById("newEmail");
+var oldEmailField = document.getElementById("oldEmail");
+var passField = document.getElementById("pass");
+
+//password fields
+var oldPasswordField = document.getElementById("oldPass");
+var newPasswordField = document.getElementById("newPass");
+var newPasswordCheckField = document.getElementById("newPassCheck");
+var emailField = document.getElementById("email");
+
 // When the user clicks on the button, open the modal
 btn.onclick = function () {
   modal.style.display = "block";
@@ -62,23 +75,128 @@ function deleteAccount() {
 
   var posts = db.collection("posts");
 
-  posts.where("username", "==", user.displayName)
-       .get()
-       .then(querySnapshot => {
-          querySnapshot.forEach((doc) => {
-            doc.ref.delete().then(() => { 
+  posts
+    .where("username", "==", user.displayName)
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        doc.ref
+          .delete()
+          .then(() => {
             console.log("Success!");
-          }).catch(function(error) {
+          })
+          .catch(function (error) {
             console.error("Error deleting: ", error);
           });
-        });
-        user.delete().then(function() {
+      });
+      user
+        .delete()
+        .then(function () {
           alert("Your account and posts have been deleted!");
-        }).catch(function(error) {
+        })
+        .catch(function (error) {
           alert(error);
         });
-        })
-       .catch(function(error) {
-         console.error("Error getting documents: ", error);
-       })
+    })
+    .catch(function (error) {
+      console.error("Error getting documents: ", error);
+    });
+}
+
+function updateUsername() {
+  var user = firebase.auth().currentUser;
+
+  //var preUpdateTest = "";
+
+  if (usernameField.value != "") {
+    var name = user.displayName;
+    //preUpdateTest += "New Username: " + usernameField.value;
+    user
+      .updateProfile({ displayName: usernameField.value })
+      .then(() => {
+        console.log("username: successfully updated");
+      })
+      .then(updatePosts(name, usernameField.value));
+  }
+  //alert(preUpdateTest);
+}
+
+function updatePosts(oldName, newName) {
+  var db = firebase.firestore();
+  var posts = db.collection("posts");
+
+  posts
+    .where("username", "==", oldName)
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        doc.ref
+          .update({ username: newName })
+          .then(() => {
+            console.log("Success!");
+          })
+          .catch(function (error) {
+            console.error("Error updating: ", error);
+          });
+      });
+    })
+    .catch(function (error) {
+      console.error("Error getting documents: ", error);
+    });
+}
+
+function updateEmail() {
+  var user = firebase.auth().currentUser;
+
+  if (
+    newEmailField.value != "" &&
+    oldEmailField.value != "" &&
+    passField.value != ""
+  ) {
+    const credential = firebase.auth.EmailAuthProvider.credential(
+      oldEmailField.value,
+      passField.value
+    );
+    user.reauthenticateWithCredential(credential);
+    //preUpdateTest += "New Email: " + emailField.value;
+    user
+      .updateEmail(newEmailField.value)
+      .then(() => {
+        console.log("email: successfully updated");
+      })
+      .catch((err) => {
+        console.log("email: " + err.message);
+      });
+  }
+  //alert(preUpdateTest);
+}
+
+function updatePassword() {
+  var user = firebase.auth().currentUser;
+
+  if (
+    emailField.value != "" &&
+    oldPasswordField.value != "" &&
+    newPasswordField.value != "" &&
+    newPasswordField.value == newPasswordCheckField.value
+  ) {
+    const credential = firebase.auth.EmailAuthProvider.credential(
+      emailField.value,
+      oldPasswordField.value
+    );
+    user.reauthenticateWithCredential(credential);
+    //preUpdateTest += "New Email: " + emailField.value;
+
+    user
+      .updatePassword(newPasswordField.value)
+      .then(() => {
+        console.log("password: successfully updated");
+      })
+      .catch((err) => {
+        console.log("password: " + err.message);
+      });
+  } else if (newPasswordField.value != newPasswordCheckField.value) {
+    alert("Password Mismatch! Update failed");
+  }
+  //alert(preUpdateTest);
 }

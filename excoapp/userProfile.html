@@ -95,9 +95,16 @@
     <div id="usernameContainer"></div>
     <h2>Email</h2>
     <div id="emailContainer"></div>
-    <h2>Bio</h2>
-    <div id="bioContainer"></div>
     <h2>Link To Analytics?</h2>
+    <button data-toggle="modal" data-target="#updateUsernameModal">
+      Update Username
+    </button>
+    <button data-toggle="modal" data-target="#updateEmailModal">
+      Update Email Address
+    </button>
+    <button data-toggle="modal" data-target="#updatePasswordModal">
+      Update Password
+    </button>
     <div class="DeleteContainer">
       <div class="Delete">
         <p>
@@ -135,6 +142,166 @@
               onclick="deleteAccount()"
             >
               Delete
+            </button>
+            <button type="button" class="btn btn-info" data-dismiss="modal">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="updateUsernameModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Update Username</h4>
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>New Username</p>
+            <textarea
+          class="post-input"
+          id="newUsername"
+          rows="1"
+          cols="25"
+          placeholder="UserName"
+        ></textarea>
+      </br>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-dismiss="modal"
+              onclick="updateUsername()"
+            >
+              Update
+            </button>
+            <button type="button" class="btn btn-info" data-dismiss="modal">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="updateEmailModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Update Email Address</h4>
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Current Email</p>
+            <textarea
+          class="post-input"
+          id="oldEmail"
+          rows="1"
+          cols="25"
+          placeholder="Current Email"
+        ></textarea>
+      </br>
+      <p>Current Password</p>
+            <textarea
+          class="post-input"
+          id="pass"
+          rows="1"
+          cols="25"
+          placeholder="Password"
+        ></textarea>
+    </br>
+    <p>New Email</p>
+            <textarea
+          class="post-input"
+          id="newEmail"
+          rows="1"
+          cols="25"
+          placeholder="New Email"
+        ></textarea>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-dismiss="modal"
+              onclick="updateEmail()"
+            >
+              Update
+            </button>
+            <button type="button" class="btn btn-info" data-dismiss="modal">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="updatePasswordModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Update Password</h4>
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Current Email</p>
+            <textarea
+          class="post-input"
+          id="email"
+          rows="1"
+          cols="25"
+          placeholder="Current Email"
+        ></textarea>
+      </br>
+      <p>Current Password</p>
+            <textarea
+          class="post-input"
+          id="oldPass"
+          rows="1"
+          cols="25"
+          placeholder="Old Password"
+        ></textarea>
+    </br>
+    <p>New Password</p>
+            <textarea
+          class="post-input"
+          id="newPass"
+          rows="1"
+          cols="25"
+          placeholder="New Password"
+        ></textarea>
+      </br>
+      <p>Confirm New Password</p>
+              <textarea
+            class="post-input"
+            id="newPassCheck"
+            rows="1"
+            cols="25"
+            placeholder="New Password"
+          ></textarea>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-dismiss="modal"
+              onclick="updatePassword()"
+            >
+              Update
             </button>
             <button type="button" class="btn btn-info" data-dismiss="modal">
               Close
