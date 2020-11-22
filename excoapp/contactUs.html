@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>Contact Us</title>
+    <meta name="description" content="ExcoAppJS" />
+    <meta name="author" content="SitePoint" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- <script src="js/scripts.js"></script> -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+  https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-auth.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark" class="shift">
+      <!-- Brand -->
+      <a class="navbar-brand" href="#"
+        ><img src="assets/logo.png" alt="logo" class="smallLogo"
+      /></a>
+
+      <!-- Toggler/collapsibe Button -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapsibleNavbar"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Navbar links -->
+
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item" id="create">
+            <a class="nav-link" href="index.html">Create a post</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="UserTimeline.html">Timeline</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="UserProfile.html">My Profile</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="contactUs.html">Contact Us</a>
+          </li>
+          <li class="nav-item" id="signin">
+            <a class="nav-link" href="authenticate.html">Sign In</a>
+          </li>
+          <li class="nav-item" id="signout">
+            <a class="nav-link" href="signout.html">Sign Out</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="leaderboard.html">Leaderboard</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#"
+              ><img src="assets/avatar.png" alt="Avatar" class="avatar"
+            /></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="post-box">
+        <textarea
+          class="post-input"
+          id="subjectInput"
+          rows="1"
+          cols="50"
+          placeholder="Subject"
+        ></textarea>
+      </div>
+    <div class="post-box">
+      <textarea
+        class="post-input"
+        id="mainInput"
+        rows="4"
+        cols="50"
+        placeholder="Message"
+      ></textarea>
+      <br />
+      <button class="post-btn" id="send" data-toggle="modal" data-target="#exampleModal">Send</button>
+    </div>
+ 
+  
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Feedback sent</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Your feedback has been sent. Thank you for your contribution to the app! 
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="sendconfirm" class="btn btn-secondary" data-dismiss="modal">Got It</button>
+      </div>
+    </div>
+  </div>
+</div>
+    <script src="./appconfig.js"></script>
+    <script src="./contactUs.js"></script>
+  </body>
+</html>

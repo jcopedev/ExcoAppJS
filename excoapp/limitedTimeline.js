@@ -4,99 +4,159 @@ firebase.initializeApp(firebaseConfig);
 // Initialize Cloud Firestore through Firebase
 var db = firebase.firestore();
 
-//if signed in
-db.collection("posts")
-  .orderBy("credits", "desc")
-  .get()
-  .then((querySnapshot) => {
-    document.body.style.backgroundImage =
-      "linear-gradient( 135deg, #92FFC0 10%, #002661 100%)";
+var cardContainer = document.getElementById("cardContainer");
 
-    //Overall Timeline Div
-    var timelineDiv = document.createElement("div");
-    timelineDiv.id = "timelineDiv";
-    timelineDiv.className = "timelineDiv";
-    document.body.appendChild(timelineDiv);
+//Set the initial background color in RGB
+var RED_COUNT = 255;
+var BLUE_COUNT = 255;
+var GREEN_COUNT = 255;
+var bottomPost;
 
-    timelineDiv.style.textAlign = "center";
-    timelineDiv.style.width = "80%";
-    timelineDiv.style.paddingLeft = "20%";
-
-    var count = 1;
-    querySnapshot.forEach((doc) => {
-      if (doc.data().credits > 0) {
-        console.log(
-          `${doc.data().username} => ${doc.data().message}, ${
-            doc.data().dateCreated
-          }`
-        );
-
-        //post Div
-        var postDiv = document.createElement("div");
-        postDiv.id = "postDiv" + count;
-        postDiv.className = "postDiv";
-        document.getElementById("timelineDiv").appendChild(postDiv);
-
-        var userName = document.createElement("h4");
-        userName.innerHTML = `${doc.data().username}`;
-        document.getElementById("postDiv" + count).appendChild(userName);
-        userName.style.textAlign = "left";
-        userName.style.padding = "2.5%";
-
-        var messageContent = document.createElement("p");
-        messageContent.innerHTML = `${doc.data().message}`;
-        document.getElementById("postDiv" + count).appendChild(messageContent);
-        messageContent.style.textAlign = "left";
-        messageContent.style.padding = "2.5%";
-
-        var creditCount = document.createElement("p");
-        creditCount.innerHTML = `ExcoCredits: ${doc.data().credits}`;
-        document.getElementById("postDiv" + count).appendChild(creditCount);
-        creditCount.style.textAlign = "right";
-        creditCount.style.padding = "2.5%";
-
-        var deleteBtn = document.createElement("BUTTON");
-        deleteBtn.innerHTML = "Delete This!";
-        document.getElementById("postDiv" + count).appendChild(deleteBtn);
-        deleteBtn.style.textAlign = "right";
-        deleteBtn.style.display = "inline-block";
-        deleteBtn.style.padding = "0.35em 1.2em";
-        deleteBtn.style.border = "0.1em solid #FFFFFF";
-        deleteBtn.style.margin = "0 0.3em 0.3em 0";
-        deleteBtn.style.borderRadius = "0.12em";
-        deleteBtn.style.boxSizing = "border-box";
-        deleteBtn.style.fontFamily = "'Roboto',sans-serif";
-        deleteBtn.style.fontWeight = "300";
-        deleteBtn.style.color = "#FFFFFF";
-        deleteBtn.style.transition = "all 0.2s";
-        deleteBtn.style.backgroundColor = "#343A40";
-
-        var breakElement = document.createElement("br");
-        document.getElementById("postDiv" + count).appendChild(breakElement);
-
-        document.getElementById("postDiv" + count).style.border =
-          "5px solid #0BB5B3	";
-        document.getElementById("postDiv" + count).style.boxShadow =
-          "20px 20px rgba(0,0,0,.15)";
-        document.getElementById("postDiv" + count).style.borderRadius = "25px";
-        document.getElementById("postDiv" + count).style.marginBottom = "25px";
-        document.getElementById("postDiv" + count).style.marginTop = "15px";
-        count++;
-
-        deleteBtn.onclick = function () {
-          alert(
-            "Warning: You are about to delete this message from the entire website. It will be the last time anyone ever sees it. Are you sure you want to do that? Also, you will probably make the person who wrote this message sad."
-          );
-          doc.ref.update({
-            credits: firebase.firestore.FieldValue.increment(-1),
-          });
-          if (doc.data().credits == 0) {
-            doc.ref.update({ dateDeleted: date.now() });
-          }
-          return false;
-        };
-      }
-    });
-  });
 var user = firebase.auth().currentUser;
-document.getElementById('avatar').src = user.photoURL;
+var name, email, photoUrl, uid, emailVerified;
+
+//Change the background color as your scroll
+const [red, green, blue] = [2, 214, 210];
+const section1 = document.getElementById("mainBody");
+
+window.addEventListener("scroll", () => {
+  let y = 1 + (window.scrollY || window.pageYOffset) / 3000;
+  y = y < 1 ? 1 : y; // ensure y is always >= 1 (due to Safari's elastic scroll)
+  const [r, g, b] = [red / y, green / y, blue / y].map(Math.round);
+  section1.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+});
+
+firebase.auth().onAuthStateChanged(function (user) {
+  if (user) {
+    name = user.displayName;
+    email = user.email;
+    photoUrl = user.photoURL;
+    emailVerified = user.emailVerified;
+    uid = user.uid; // The user's ID, unique to the Firebase project. Do NOT use
+    // this value to authenticate with your backend server, if
+    // you have one. Use User.getToken() instead.
+    //alert(email);
+    //alert(photoUrl);
+    document.getElementById('avatar').src = photoUrl;
+  } else {
+    //alert("not signed in");
+    //window.location.href = "./limitedTimeline.html";
+  }
+});
+
+
+function signInPrompt(message) {
+  alert(
+    `${message} Sorry, you can't delete messages until you are signed in. Please sign in to delete this message.`
+  );
+}
+
+function deletePost(postId, message) {
+  signInPrompt(message);
+}
+
+function makeCard(postId, userName, message, excoCredits) {
+  htmlString = `<div class = "divBreak" id = ${postId} >
+					<div class="card" style="width: 28rem;  background-color: #41403E; border:solid 7px #41403E; border-radius: 25px;  box-shadow: 20px 38px 34px -26px hsla(0,0%,0%,.2);
+          border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;">
+					<div class="card-body" style="background-color:  white; border:solid 7px #41403E;border-radius: 25px;  box-shadow: 20px 38px 34px -26px hsla(0,0%,0%,.2);
+          border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;" >
+					<h5 class="card-title">${userName}</h5>
+				    <h6 class="card-subtitle mb-2 text-muted">Exco Credits: ${excoCredits}</h6>
+					<p class="card-text">${message}</p>
+					<button class="float-right" onclick="deletePost('${postId}','${message}')" id = "deleteBtn" style="font-weight: bold; color: white; background-color: #666462;">Delete This!</button>
+				</div>
+					</div>
+					</br>
+				</div>
+				`;
+  return htmlString;
+}
+
+function loadNextPosts(/*prevBottomPost*/) {
+  db.collection("posts")
+    .where("credits", "==", 1)
+    .orderBy("dateCreated", "asc")
+    .startAfter(bottomPost)
+    .limit(9)
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        postId = doc.id;
+        userName = doc.data().username.trim();
+        message = doc.data().message.trim();
+        excoCredits = doc.data().credits;
+        bottomPost = doc;
+
+        cardContainer.innerHTML += makeCard(
+          postId,
+          userName,
+          message,
+          excoCredits
+        );
+      });
+    });
+}
+
+function incrementRedBackground() {
+  // RED_COUNT++;
+  // GREEN_COUNT--;
+  // BLUE_COUNT--;
+  // if (RED_COUNT > 255) {
+  //   RED_COUNT = 255;
+  // }
+  // if (GREEN_COUNT < 0) {
+  //   GREEN_COUNT = 0;
+  // }
+  // if (BLUE_COUNT < 0) {
+  //   BLUE_COUNT = 0;
+  // }
+  // document.body.style.backgroundColor = "Red";
+  // // alert(document.body.style.backgroundColor);
+  // document.getElementById("mainBody").style.backgroundColor = "Red";
+}
+
+
+function loadNextPage(/*bottomPost*/) {
+  //incrementRedBackground();
+  //TO DO: load ad
+  loadNextPosts(/*bottomPost*/);
+  return undefined;
+}
+
+	
+$(window).on("scroll", function() {
+  var scrollHeight = $(document).height();
+  var scrollPos = $(window).height() + $(window).scrollTop();
+  if ((scrollHeight - scrollPos) / scrollHeight == 0) {
+	loadNextPage();
+  }
+});
+
+function loadFirstPage() {
+  // var bottomPost;
+  document.getElementById("mainBody").style.backgroundColor =
+    "rgb(2, 214, 210)";
+
+  db.collection("posts")
+    .where("credits", "==", 1)
+    .orderBy("dateCreated", "asc")
+    .limit(10)
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        postId = doc.id;
+        userName = doc.data().username.trim();
+        message = doc.data().message.trim();
+        excoCredits = doc.data().credits;
+        bottomPost = doc;
+
+        cardContainer.innerHTML += makeCard(
+          postId,
+          userName,
+          message,
+          excoCredits
+        );
+      });
+    });
+}

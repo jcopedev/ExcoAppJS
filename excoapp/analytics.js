@@ -11,8 +11,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     var signin = document.getElementById('signin');
     var create = document.getElementById('create');
     signin.style.display = "none";
-      create.style.display = "none";
-      document.getElementById('avatar').src = user.photoURL;
+    create.style.display = "none";
   } else {
     var signout = document.getElementById("signout");
     signout.style.display = "none";
@@ -41,8 +40,9 @@ function loadFirstPage() {
   var bottomPost;
   db.collection("posts")
     .where("credits", "==", 0)
+	.where("username", "==", "James Cope")
     .orderBy("timeAlive", "desc")
-    .limit(50)
+    .limit(10)
     .get()
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {

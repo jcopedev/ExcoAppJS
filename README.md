@@ -5,7 +5,10 @@
 Open CMD prompt<br>
 Navigate to your xampp htdocs folder (Mine is C:\xampp\htdocs, but yours might be different)<br>
 
-git clone https://github.com/jcopedev/ExcoAppJS.git
+git clone https://github.com/jcopedev/ExcoAppJS.git<br>
+or<br>
+git pull https://github.com/jcopedev/ExcoAppJS.git<br>
+
 
 ~~Make sure to also transfer the appconfig.js into this folder, that I gave you on discord~~
 
