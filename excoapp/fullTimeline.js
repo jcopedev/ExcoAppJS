@@ -26,11 +26,11 @@ firebase.auth().onAuthStateChanged(function (user) {
     // you have one. Use User.getToken() instead.
     //alert(email);
     //alert(photoUrl);
+	document.getElementById('avatar').src = photoUrl;
   } else {
     alert("not signed in");
   }
 });
-
 
 const inputTextField = document.querySelector("#mainInput");
 const saveButton = document.querySelector("#save");
@@ -200,7 +200,7 @@ function loadFirstPage(){
 		  }) 
 			.then(() => {
 				moreContainer.innerHTML += makeMoreButton(bottomPost); 
-		});		
+			});
 	}
 	
 var fixmeTop = $('.postingTool').offset().top;

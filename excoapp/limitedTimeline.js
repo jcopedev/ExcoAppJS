@@ -98,3 +98,5 @@ db.collection("posts")
       }
     });
   });
+var user = firebase.auth().currentUser;
+document.getElementById('avatar').src = user.photoURL;
