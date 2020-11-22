@@ -95,11 +95,11 @@ function updateFirebase(postId, surviveTime) {
   });
 }
 
-function deleteWarning(message) {
+/*function deleteWarning(message) {
   alert(
     `${message} Warning: You are about to delete this message from the entire website. It will be the last time anyone ever sees it. Are you sure you want to do that? Also, you will probably make the person who wrote this message sad.`
   );
-}
+}*/
 
 function calcSurvival(postId) {
   var createdDate, dateRightNow;
@@ -128,12 +128,21 @@ function handleUpdate(callback) {
 }
 
 function deletePost(postId, message) {
-  deleteWarning(message);
   handleUpdate(calcSurvival, postId);
   hidePost(postId);
   condescend();
 }
+//Hella Jank way of getting this working
+$('#deletePostModal').on('show.bs.modal', function (event) {
+    var myVal = $(event.relatedTarget).data('val');
+    $(this).find(".postID").text(myVal);
 
+});
+$("#deletePostModal").on('click', '#deleteBtn', function () {
+    var midVal = $('.postID').text();
+    deletePost(midVal, "yeetTheWeak");
+    console.log(midVal);
+});
 function makeCard(postId, userName, message, excoCredits) {
   htmlString = `<div class = "divBreak" id = ${postId} >
 					<div class="card" style="width: 28rem;  background-color: #41403E; border:solid 7px #41403E; border-radius: 25px;  box-shadow: 20px 38px 34px -26px hsla(0,0%,0%,.2);
@@ -143,7 +152,7 @@ function makeCard(postId, userName, message, excoCredits) {
 					<h5 class="card-title">${userName}</h5>
 				    <h6 class="card-subtitle mb-2 text-muted">Exco Credits: ${excoCredits}</h6>
 					<p class="card-text">${message}</p>
-					<button class="float-right" onclick="deletePost('${postId}','${message}')" id = "deleteBtn" style="font-weight: bold; color: white; background-color: #666462;">Delete This!</button>
+					<button class="float-right" id = "deleteModalBtn" style="font-weight: bold; color: white; background-color: #666462;" data-toggle="modal" data-val="${postId}"data-target="#deletePostModal">Delete This!</button>
 				</div>
 					</div>
 					</br>

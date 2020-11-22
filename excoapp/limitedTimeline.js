@@ -45,16 +45,9 @@ firebase.auth().onAuthStateChanged(function (user) {
 });
 
 
-function signInPrompt(message) {
-  alert(
-    `${message} Sorry, you can't delete messages until you are signed in. Please sign in to delete this message.`
-  );
-}
 
 function deletePost(postId, message) {
-  signInPrompt(message);
 }
-
 function makeCard(postId, userName, message, excoCredits) {
   htmlString = `<div class = "divBreak" id = ${postId} >
 					<div class="card" style="width: 28rem;  background-color: #41403E; border:solid 7px #41403E; border-radius: 25px;  box-shadow: 20px 38px 34px -26px hsla(0,0%,0%,.2);
@@ -64,7 +57,7 @@ function makeCard(postId, userName, message, excoCredits) {
 					<h5 class="card-title">${userName}</h5>
 				    <h6 class="card-subtitle mb-2 text-muted">Exco Credits: ${excoCredits}</h6>
 					<p class="card-text">${message}</p>
-					<button class="float-right" onclick="deletePost('${postId}','${message}')" id = "deleteBtn" style="font-weight: bold; color: white; background-color: #666462;">Delete This!</button>
+					<button class="float-right" onclick="deletePost('${postId}','${message}')" id = "deleteBtn" style="font-weight: bold; color: white; background-color: #666462;" data-toggle="modal" data-target="#cantDeleteModal">Delete This!</button>
 				</div>
 					</div>
 					</br>
