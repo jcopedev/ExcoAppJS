@@ -89,7 +89,7 @@ function deleteAccount() {
       .reauthenticateWithCredential(credential)
       .then(() => {
         posts
-          .where("username", "==", user.displayName)
+          .where("userID", "==", user.uid)
           .get()
           .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {

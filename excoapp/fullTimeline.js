@@ -57,7 +57,8 @@ saveButton.addEventListener("click", function () {
       isPaid: false,
       dateCreated: firebase.firestore.FieldValue.serverTimestamp(),
       dateDeleted: 0,
-	  timeAlive: 0,
+      userID: uid,
+      timeAlive: 0,
       isHidden: false,
     })
     .then(function (docRef) {
@@ -65,7 +66,7 @@ saveButton.addEventListener("click", function () {
       //alert(
       //"Your message is currently at the very bottom of the message. You can add as many messages as you like, and you can also delete any messages that you don't like."
       //);
-	  alert("added");
+      alert("added");
       //window.location.href = "UserTimeline.html"; //relative to domain
       //can be change to "LimitedTimeline.html" for testing
     })
@@ -202,7 +203,6 @@ function hideMoreButton() {
   selectedMoreButton.remove();
 }
 
-
 function loadNextPage(/*bottomPost*/) {
   //hideMoreButton();
   //incrementRedBackground();
@@ -211,26 +211,23 @@ function loadNextPage(/*bottomPost*/) {
   return undefined;
 }
 
-
 //this infinite scroll was double triggering the load page function and causing weirdness
 // $(window).scroll(function () {
-  // // each time the scroll event is triggered
-  // if ($(window).scrollTop() + screen.height > $("body").height()) {
-    // // if scroll has reached the bottom, execute this
-    // loadNextPosts();
-	// //makeMoreButton();
-  // }
+// // each time the scroll event is triggered
+// if ($(window).scrollTop() + screen.height > $("body").height()) {
+// // if scroll has reached the bottom, execute this
+// loadNextPosts();
+// //makeMoreButton();
+// }
 // });
 
-	
-$(window).on("scroll", function() {
+$(window).on("scroll", function () {
   var scrollHeight = $(document).height();
   var scrollPos = $(window).height() + $(window).scrollTop();
   if ((scrollHeight - scrollPos) / scrollHeight == 0) {
-	loadNextPage();
+    loadNextPage();
   }
 });
-
 
 function makeMoreButton(/*bottomPost*/) {
   return `<div class="container">
