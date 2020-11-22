@@ -29,7 +29,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 });
 
 document.getElementById("usernameContainer").innerHTML += name;
-
+document.getElementById("titleContainer").innerHTML += name;
 // Get the modal
 var modal = document.getElementById("myModal");
 

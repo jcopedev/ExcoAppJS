@@ -89,23 +89,51 @@
       class="personalInformation"
     />
 
-    <h2>Profile Pic</h2>
-    <div id="picContainer"></div>
-    <h2>User Name</h2>
-    <div id="usernameContainer"></div>
-    <h2>Email</h2>
-    <div id="emailContainer"></div>
-    <h2><a href="analytics.html">Analytics</a></h2>
+    <!-- Body of the website -->
 
-    <button data-toggle="modal" data-target="#updateUsernameModal">
+
+    <!-- Title -->
+    <div class="masterProfileContainer">
+    <h2 id="userTitle"  style="font-size: 60px;">Welcome, <span id="titleContainer"></span> </h2>
+
+    <!-- Profile section -->
+    <!-- <h2>Profile Pic</h2>
+    <div id="picContainer"></div> -->
+    <div class="profileContainer">
+    <p style="font-size: 30px;">User Profile</p>
+    <p style="font-size: 20px;">User Name: <span id="usernameContainer"></span></p>
+    <p style="font-size: 20px;">Email:  <span id="emailContainer"></span></p>
+   
+    <button data-toggle="modal" data-target="#updateUsernameModal" style="background-color: #03D6D2; color: black;" class="btn btn-info" >
       Update Username
     </button>
-    <button data-toggle="modal" data-target="#updateEmailModal">
+    <span>&nbsp;</span>
+    <button data-toggle="modal" data-target="#updateEmailModal" style="background-color: #03D6D2; color: black;" class="btn btn-info" >
       Update Email Address
     </button>
-    <button data-toggle="modal" data-target="#updatePasswordModal">
+    <span>&nbsp;</span>
+    <button data-toggle="modal" data-target="#updatePasswordModal" style="background-color: #03D6D2;color: black;" class="btn btn-info" >
       Update Password
     </button>
+    <span>&nbsp;</span>
+    <button onClick="location.href='analytics.html'" style="background-color: #03D6D2; color: black;" class="btn btn-info">
+      Analytics
+    </button>
+  </div>
+</div>
+
+  <!--anaytics container-->
+  <!-- <div class="analyticsContainer">
+    <div class="Analytics">
+      <p>
+        View your analytics here...
+      </p>
+      
+    <h2><a href="analytics.html">Analytics</a></h2>
+  </div>
+  </div> -->
+
+
     <div class="DeleteContainer">
       <div class="Delete">
         <p>

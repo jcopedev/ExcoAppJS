@@ -16,8 +16,41 @@
     />
     <link rel="stylesheet" href="css/style.css" />
   </head>
-  <body onload="signout()">
-    <h1>Signing Out!</h1>
+  <body onload="signout()" style="background-color: #f2f2f2">
+    <div class="masterDivSignout">
+      <div class="signOutTextContainer">
+        <img
+          src="assets/logo.png"
+          style="
+            background-color: black;
+            border: none;
+            border-radius: 50px;
+            align-self: center;
+            height: 100px;
+            width: auto;
+            padding: 0 0 0 0;
+            margin: 0 0 0 0;
+            margin-left: 10%;
+          "
+        />
+        <h1>You have successfully signed out.</h1>
+        <button onClick="location.href='authenticate.html'" class="signoutBtn">
+          Sign in again
+        </button>
+        <button
+          onClick="location.href='limitedtimeline.html'"
+          class="signoutBtn"
+        >
+          Browse Anonymously
+        </button>
+        <button onClick="location.href='contactus.html'" class="signoutBtn">
+          Contact us
+        </button>
+      </div>
+      <div class="signOutPicContainer">
+        <img src="assets/logOut.svg" />
+      </div>
+    </div>
     <script src="./appconfig.js"></script>
     <script src="./signout.js"></script>
   </body>
