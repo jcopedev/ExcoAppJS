@@ -73,13 +73,13 @@
             <a class="nav-link" href="leaderboard.html">Leaderboard</a>
           </li>
         </ul>
-        <ul class="navbar-nav">
+        <!-- <ul class="navbar-nav">
           <li class="nav-item">
             <a class="nav-link" href="#"
               ><img src="assets/avatar.png" alt="Avatar" class="avatar" id="avatar"
             /></a>
           </li>
-        </ul>
+        </ul> -->
       </div>
     </nav>
     <p id="demo"></p>
@@ -97,25 +97,28 @@
         <h2 id="userTitle" style="font-size: 60px;">Welcome, <span id="titleContainer"></span> </h2>
 
         <!-- Profile section -->
-        <!-- <h2>Profile Pic</h2>
-    <div id="picContainer"><img src="assets/avatar.png" alt="Avatar" class="avatar" id="picContainerImg" /></div> -->
+        <!-- <h2>Profile Pic</h2> -->
+    
         <div class="profileContainer">
             <p style="font-size: 30px;">User Profile</p>
+            <div id="picContainer"><img src="assets/avatar.png" alt="Avatar" class="avatar" id="picContainerImg" style="border: none; border-radius: 50px;   width: 50px;
+              height: 100px; width: 100px;"/></div>
+              <div>
             <p style="font-size: 20px;">User Name: <span id="usernameContainer"></span></p>
             <p style="font-size: 20px;">Email:  <span id="emailContainer"></span></p>
-
+          </div>
             <button data-toggle="modal" data-target="#updateUsernameModal" style="background-color: #03D6D2; color: black;" class="btn btn-info">
                 Update Username
             </button>
-            <span>&nbsp;</span>
+            
             <button data-toggle="modal" data-target="#updateEmailModal" style="background-color: #03D6D2; color: black;" class="btn btn-info">
                 Update Email Address
             </button>
-            <span>&nbsp;</span>
+            
             <button data-toggle="modal" data-target="#updatePasswordModal" style="background-color: #03D6D2;color: black;" class="btn btn-info">
                 Update Password
             </button>
-            <span>&nbsp;</span>
+            
             <button onClick="location.href='analytics.html'" style="background-color: #03D6D2; color: black;" class="btn btn-info">
                 Analytics
             </button>
