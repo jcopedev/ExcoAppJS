@@ -12,19 +12,16 @@ firebase.auth().onAuthStateChanged(function (user) {
     email = user.email;
     photoUrl = user.photoURL;
     emailVerified = user.emailVerified;
-
     uid = user.uid; // The user's ID, unique to the Firebase project. Do NOT use
     // this value to authenticate with your backend server, if
     // you have one. Use User.getToken() instead.
     //alert(name);
 
     //this wasn't working outside this scope not sure why
-    document.getElementById('avatar').src = photoUrl;
     document.getElementById("emailContainer").innerHTML += email;
       document.getElementById("picContainerImg").src = photoUrl;
-    //alert(photoUrl);
       //window.location.href = "./userProfile.html";
-
+      document.getElementById('avatar').src = photoUrl;
   } else {
     alert("not signed in");
     window.location.href = "./index.html";
@@ -32,8 +29,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 });
 
 document.getElementById("usernameContainer").innerHTML += name;
-
-
+document.getElementById("titleContainer").innerHTML += name;
 // Get the modal
 var modal = document.getElementById("myModal");
 
@@ -53,7 +49,7 @@ var usernameField = document.getElementById("newUsername");
 //email fields
 var newEmailField = document.getElementById("newEmail");
 var oldEmailField = document.getElementById("oldEmail");
-var passField = document.getElementById ("pass");
+var passField = document.getElementById("pass");
 
 //password fields
 var oldPasswordField = document.getElementById("oldPass");

@@ -7,6 +7,7 @@
 
 @import url(https://fonts.googleapis.com/css?family=Monoton);
 @import url("https://fonts.googleapis.com/css2?family=Cabin&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Archivo&display=swap");
 body {
   background-color: #ffffff;
   font-family: "Ubuntu", sans-serif;
@@ -384,4 +385,100 @@ body {
 }
 .adBtn:hover {
   background-color: #343a40;
+}
+
+#userTitle {
+  font-family: "Archivo", sans-serif;
+}
+
+.profileContainer {
+  font-family: "Archivo", sans-serif;
+}
+
+.masterProfileContainer {
+  margin: 5%;
+  width: 50%;
+  padding: 1rem 2rem;
+  border: 3px solid #333333;
+  font-size: 2rem;
+  border-radius: 2% 6% 5% 4% / 1% 1% 2% 4%;
+  text-transform: uppercase;
+  letter-spacing: 0.3ch;
+  background: #ffffff;
+}
+/* .masterProfileContainer::before {
+  content: "";
+  border: 2px solid #353535;
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate3d(-50%, -50%, 0) scale(1.015) rotate(0.5deg);
+  transform: translate3d(-50%, -50%, 0) scale(1.015) rotate(0.5deg);
+  border-radius: 1% 1% 2% 4% / 2% 6% 5% 4%;
+} */
+
+.contactUsContainer {
+  background-image: linear-gradient(
+    109.6deg,
+    rgba(121, 203, 202, 1) 11.2%,
+    rgba(119, 161, 211, 1) 91.1%
+  );
+  font-family: "Archivo", sans-serif;
+
+  font-size: 3rem;
+  border-radius: 0px 0px 40px 40px;
+  color: white;
+  padding: 120px 150px 80px 150px;
+  text-align: center;
+}
+
+.contactForm {
+  box-shadow: 10px 10px 5px grey;
+  max-width: 100%;
+  max-height: 100%;
+  contain: content;
+  padding: 3%;
+}
+
+.masterDivSignout {
+  width: 100%;
+  height: 100%;
+  margin-right: 10px;
+}
+
+.signOutTextContainer {
+  float: left;
+  max-width: 50%;
+  max-height: 80%;
+  contain: content;
+  font-family: Arial, Helvetica, ‘sans-serif’;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 90px;
+  color: #333333;
+  padding-top: 5%;
+}
+
+.signoutBtn {
+  padding: 2%;
+  background-color: #02d6d2;
+  border: 2px solid #333333;
+  border-radius: 12px;
+  font-size: 0.5em;
+  font-weight: 500;
+}
+
+.signoutBtn:hover {
+  background-color: #333;
+  color: white;
+}
+
+.signOutPicContainer {
+  float: right;
+  max-width: 50%;
+  max-height: 80%;
+  contain: content;
 }

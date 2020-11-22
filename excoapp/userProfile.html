@@ -33,272 +33,332 @@
   </head>
 
   <body>
-      <title>Profile Page</title>
-      <nav class="navbar navbar-expand-md bg-dark navbar-dark" class="shift">
-          <!-- Brand -->
-          <a class="navbar-brand" href="#">
-              <img src="assets/logo.png" alt="logo" class="smallLogo" />
-          </a>
+    <title>Profile Page</title>
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark" class="shift">
+      <!-- Brand -->
+      <a class="navbar-brand" href="#"
+        ><img src="assets/logo.png" alt="logo" class="smallLogo"
+      /></a>
 
-          <!-- Toggler/collapsibe Button -->
-          <button class="navbar-toggler"
-                  type="button"
-                  data-toggle="collapse"
-                  data-target="#collapsibleNavbar">
-              <span class="navbar-toggler-icon"></span>
-          </button>
-
-          <!-- Navbar links -->
-
-          <div class="collapse navbar-collapse" id="collapsibleNavbar">
-              <ul class="navbar-nav mr-auto">
-                  <li class="nav-item">
-                      <a class="nav-link" href="#"></a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="UserTimeline.html">Timeline</a>
-                  </li>
-                  <li class="nav-item active">
-                      <a class="nav-link" href="UserProfile.html">My Profile</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="contactUs.html">Contact Us</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="signout.html">Sign Out</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="leaderboard.html">Leaderboard</a>
-                  </li>
-              </ul>
-              <ul class="navbar-nav">
-                  <li class="nav-item">
-                      <a class="nav-link" href="#">
-                          <img src="assets/avatar.png" alt="Avatar" class="avatar" id="avatar" />
-                      </a>
-                  </li>
-              </ul>
-          </div>
-      </nav>
-      <p id="demo"></p>
-      <img src="assets/personalInformation.svg"
-           alt="personalInformation"
-           class="personalInformation" />
-
-      <h2>Profile Pic</h2>
-      <div id="picContainer"><img src="assets/avatar.png" alt="Avatar" class="avatar" id="picContainerImg" /></div>
-      <h2>User Name</h2>
-      <div id="usernameContainer"></div>
-      <h2>Email</h2>
-      <div id="emailContainer"></div>
-      <h2><a href="analytics.html">Analytics</a></h2>
-
-      <button data-toggle="modal" data-target="#updateUsernameModal">
-          Update Username
+      <!-- Toggler/collapsibe Button -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapsibleNavbar"
+      >
+        <span class="navbar-toggler-icon"></span>
       </button>
-      <button data-toggle="modal" data-target="#updateEmailModal">
-          Update Email Address
-      </button>
-      <button data-toggle="modal" data-target="#updatePasswordModal">
-          Update Password
-      </button>
-      <div class="DeleteContainer">
-          <div class="Delete">
-              <p>
-                  Delete your existence from the exco app. All your posts and user data
-                  will be deleted from our server.
-              </p>
-              <button class="btn danger" data-toggle="modal" data-target="#myModal">
-                  Delete Account
-              </button>
-          </div>
-      </div>
 
-      <!-- Modal -->
-      <div id="myModal" class="modal fade" role="dialog">
-          <div class="modal-dialog">
-              <!-- Modal content-->
-              <div class="modal-content">
-                  <div class="modal-header">
-                      <h4 class="modal-title">Delete Account</h4>
-                      <button type="button" class="close" data-dismiss="modal">
-                          &times;
-                      </button>
-                  </div>
-                  <div class="modal-body">
-                      <p>
-                          Are you sure you want to completely delete your account?<br />Warning:
-                          All data will be deleted and can not be retreived
-                      </p>
-                      <p>Email Address</p>
-                      <textarea class="post-input"
-                                id="deleteEmail"
-                                rows="1"
-                                cols="25"
-                                placeholder="Email Address"></textarea>
-                      </br>
-                      <p>Password</p>
-                      <textarea class="post-input"
-                                id="deletePassword"
-                                rows="1"
-                                cols="25"
-                                placeholder="Password"></textarea>
-                      </br>
-                  </div>
-                  <div class="modal-footer">
-                      <button type="button"
-                              class="btn btn-danger"
-                              data-dismiss="modal"
-                              onclick="deleteAccount()">
-                          Delete
-                      </button>
-                      <button type="button" class="btn btn-info" data-dismiss="modal">
-                          Close
-                      </button>
-                  </div>
-              </div>
-          </div>
-      </div>
+      <!-- Navbar links -->
 
-      <!-- Modal -->
-      <div id="updateUsernameModal" class="modal fade" role="dialog">
-          <div class="modal-dialog">
-              <!-- Modal content-->
-              <div class="modal-content">
-                  <div class="modal-header">
-                      <h4 class="modal-title">Update Username</h4>
-                      <button type="button" class="close" data-dismiss="modal">
-                          &times;
-                      </button>
-                  </div>
-                  <div class="modal-body">
-                      <p>New Username</p>
-                      <textarea class="post-input"
-                                id="newUsername"
-                                rows="1"
-                                cols="25"
-                                placeholder="UserName"></textarea>
-                      </br>
-                  </div>
-                  <div class="modal-footer">
-                      <button type="button"
-                              class="btn btn-danger"
-                              data-dismiss="modal"
-                              onclick="updateUsername()">
-                          Update
-                      </button>
-                      <button type="button" class="btn btn-info" data-dismiss="modal">
-                          Close
-                      </button>
-                  </div>
-              </div>
-          </div>
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#"></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="UserTimeline.html">Timeline</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="UserProfile.html">My Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contactUs.html">Contact Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="signout.html">Sign Out</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="leaderboard.html">Leaderboard</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#"
+              ><img src="assets/avatar.png" alt="Avatar" class="avatar" id="avatar"
+            /></a>
+          </li>
+        </ul>
       </div>
+    </nav>
+    <p id="demo"></p>
+    <img
+      src="assets/personalInformation.svg"
+      alt="personalInformation"
+      class="personalInformation"
+    />
 
-      <!-- Modal -->
-      <div id="updateEmailModal" class="modal fade" role="dialog">
-          <div class="modal-dialog">
-              <!-- Modal content-->
-              <div class="modal-content">
-                  <div class="modal-header">
-                      <h4 class="modal-title">Update Email Address</h4>
-                      <button type="button" class="close" data-dismiss="modal">
-                          &times;
-                      </button>
-                  </div>
-                  <div class="modal-body">
-                      <p>Current Email</p>
-                      <textarea class="post-input"
-                                id="oldEmail"
-                                rows="1"
-                                cols="25"
-                                placeholder="Current Email"></textarea>
-                      </br>
-                      <p>Current Password</p>
-                      <textarea class="post-input"
-                                id="pass"
-                                rows="1"
-                                cols="25"
-                                placeholder="Password"></textarea>
-                      </br>
-                      <p>New Email</p>
-                      <textarea class="post-input"
-                                id="newEmail"
-                                rows="1"
-                                cols="25"
-                                placeholder="New Email"></textarea>
-                  </div>
-                  <div class="modal-footer">
-                      <button type="button"
-                              class="btn btn-danger"
-                              data-dismiss="modal"
-                              onclick="updateEmail()">
-                          Update
-                      </button>
-                      <button type="button" class="btn btn-info" data-dismiss="modal">
-                          Close
-                      </button>
-                  </div>
-              </div>
-          </div>
+    <!-- Body of the website -->
+
+
+    <!-- Title -->
+    <div class="masterProfileContainer">
+        <h2 id="userTitle" style="font-size: 60px;">Welcome, <span id="titleContainer"></span> </h2>
+
+        <!-- Profile section -->
+        <!-- <h2>Profile Pic</h2>
+    <div id="picContainer"><img src="assets/avatar.png" alt="Avatar" class="avatar" id="picContainerImg" /></div> -->
+        <div class="profileContainer">
+            <p style="font-size: 30px;">User Profile</p>
+            <p style="font-size: 20px;">User Name: <span id="usernameContainer"></span></p>
+            <p style="font-size: 20px;">Email:  <span id="emailContainer"></span></p>
+
+            <button data-toggle="modal" data-target="#updateUsernameModal" style="background-color: #03D6D2; color: black;" class="btn btn-info">
+                Update Username
+            </button>
+            <span>&nbsp;</span>
+            <button data-toggle="modal" data-target="#updateEmailModal" style="background-color: #03D6D2; color: black;" class="btn btn-info">
+                Update Email Address
+            </button>
+            <span>&nbsp;</span>
+            <button data-toggle="modal" data-target="#updatePasswordModal" style="background-color: #03D6D2;color: black;" class="btn btn-info">
+                Update Password
+            </button>
+            <span>&nbsp;</span>
+            <button onClick="location.href='analytics.html'" style="background-color: #03D6D2; color: black;" class="btn btn-info">
+                Analytics
+            </button>
+        </div>
+    </div>
+
+  <!--anaytics container-->
+  <!-- <div class="analyticsContainer">
+    <div class="Analytics">
+      <p>
+        View your analytics here...
+      </p>
+      
+    <h2><a href="analytics.html">Analytics</a></h2>
+  </div>
+  </div> -->
+
+
+    <div class="DeleteContainer">
+      <div class="Delete">
+        <p>
+          Delete your existence from the exco app. All your posts and user data
+          will be deleted from our server.
+        </p>
+        <button class="btn danger" data-toggle="modal" data-target="#myModal">
+          Delete Account
+        </button>
       </div>
+    </div>
 
-      <!-- Modal -->
-      <div id="updatePasswordModal" class="modal fade" role="dialog">
-          <div class="modal-dialog">
-              <!-- Modal content-->
-              <div class="modal-content">
-                  <div class="modal-header">
-                      <h4 class="modal-title">Update Password</h4>
-                      <button type="button" class="close" data-dismiss="modal">
-                          &times;
-                      </button>
-                  </div>
-                  <div class="modal-body">
-                      <p>Current Email</p>
-                      <textarea class="post-input"
-                                id="email"
-                                rows="1"
-                                cols="25"
-                                placeholder="Current Email"></textarea>
-                      </br>
-                      <p>Current Password</p>
-                      <textarea class="post-input"
-                                id="oldPass"
-                                rows="1"
-                                cols="25"
-                                placeholder="Old Password"></textarea>
-                      </br>
-                      <p>New Password</p>
-                      <textarea class="post-input"
-                                id="newPass"
-                                rows="1"
-                                cols="25"
-                                placeholder="New Password"></textarea>
-                      </br>
-                      <p>Confirm New Password</p>
-                      <textarea class="post-input"
-                                id="newPassCheck"
-                                rows="1"
-                                cols="25"
-                                placeholder="New Password"></textarea>
-                  </div>
-                  <div class="modal-footer">
-                      <button type="button"
-                              class="btn btn-danger"
-                              data-dismiss="modal"
-                              onclick="updatePassword()">
-                          Update
-                      </button>
-                      <button type="button" class="btn btn-info" data-dismiss="modal">
-                          Close
-                      </button>
-                  </div>
-              </div>
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Delete Account</h4>
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
           </div>
+          <div class="modal-body">
+            <p>
+              Are you sure you want to completely delete your account?<br />Warning:
+              All data will be deleted and can not be retreived
+            </p> 
+            <p>Email Address</p>
+            <textarea
+          class="post-input"
+          id="deleteEmail"
+          rows="1"
+          cols="25"
+          placeholder="Email Address"
+        ></textarea>
+      </br>
+      <p>Password</p>
+      <textarea
+    class="post-input"
+    id="deletePassword"
+    rows="1"
+    cols="25"
+    placeholder="Password"
+  ></textarea>
+</br>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-dismiss="modal"
+              onclick="deleteAccount()"
+            >
+              Delete
+            </button>
+            <button type="button" class="btn btn-info" data-dismiss="modal">
+              Close
+            </button>
+          </div>
+        </div>
       </div>
+    </div>
 
-      <script src="./appconfig.js"></script>
-      <script src="./userProfile.js"></script>
+    <!-- Modal -->
+    <div id="updateUsernameModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Update Username</h4>
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>New Username</p>
+            <textarea
+          class="post-input"
+          id="newUsername"
+          rows="1"
+          cols="25"
+          placeholder="UserName"
+        ></textarea>
+      </br>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-dismiss="modal"
+              onclick="updateUsername()"
+            >
+              Update
+            </button>
+            <button type="button" class="btn btn-info" data-dismiss="modal">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="updateEmailModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Update Email Address</h4>
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Current Email</p>
+            <textarea
+          class="post-input"
+          id="oldEmail"
+          rows="1"
+          cols="25"
+          placeholder="Current Email"
+        ></textarea>
+      </br>
+      <p>Current Password</p>
+            <textarea
+          class="post-input"
+          id="pass"
+          rows="1"
+          cols="25"
+          placeholder="Password"
+        ></textarea>
+    </br>
+    <p>New Email</p>
+            <textarea
+          class="post-input"
+          id="newEmail"
+          rows="1"
+          cols="25"
+          placeholder="New Email"
+        ></textarea>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-dismiss="modal"
+              onclick="updateEmail()"
+            >
+              Update
+            </button>
+            <button type="button" class="btn btn-info" data-dismiss="modal">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="updatePasswordModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Update Password</h4>
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Current Email</p>
+            <textarea
+          class="post-input"
+          id="email"
+          rows="1"
+          cols="25"
+          placeholder="Current Email"
+        ></textarea>
+      </br>
+      <p>Current Password</p>
+            <textarea
+          class="post-input"
+          id="oldPass"
+          rows="1"
+          cols="25"
+          placeholder="Old Password"
+        ></textarea>
+    </br>
+    <p>New Password</p>
+            <textarea
+          class="post-input"
+          id="newPass"
+          rows="1"
+          cols="25"
+          placeholder="New Password"
+        ></textarea>
+      </br>
+      <p>Confirm New Password</p>
+              <textarea
+            class="post-input"
+            id="newPassCheck"
+            rows="1"
+            cols="25"
+            placeholder="New Password"
+          ></textarea>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-dismiss="modal"
+              onclick="updatePassword()"
+            >
+              Update
+            </button>
+            <button type="button" class="btn btn-info" data-dismiss="modal">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./appconfig.js"></script>
+    <script src="./userProfile.js"></script>
   </body>
 </html>
