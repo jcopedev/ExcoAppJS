@@ -21,7 +21,8 @@ firebase.auth().onAuthStateChanged(function (user) {
     document.getElementById("emailContainer").innerHTML += email;
     document.getElementById("picContainer").innerHTML += photoURL;
     //alert(photoUrl);
-    window.location.href = "./userProfile.html";
+      window.location.href = "./userProfile.html";
+      document.getElementById('avatar').src = photoUrl;
   } else {
     alert("not signed in");
     window.location.href = "./index.html";

@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Exco App JS</title>
+    <meta name="description" content="ExcoAppJS" />
+    <meta name="author" content="SitePoint" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <script src="js/scripts.js"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+    https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-firestore.js"></script>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark" class="shift">
+        <!-- Brand -->
+        <a class="navbar-brand" href="#">
+            <img src="assets/logo.png" alt="logo" class="smallLogo" />
+        </a>
+
+        <!-- Toggler/collapsibe Button -->
+        <button class="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar links -->
+
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="http://localhost/excoappjs/excoapp">Create a post</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="UserTimeline.html">Timeline</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="UserProfile.html">My Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="authenticate.html">Sign In</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="signout.html">Sign Out</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <img src="assets/avatar.png" alt="Avatar" class="avatar" id="avatar" />
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div>
+        <h1>Privacy Policy</h1>
+        <p>Spicy jalapeno bacon ipsum dolor amet in tri-tip strip steak meatloaf short ribs landjaeger ham hock kielbasa shoulder spare ribs incididunt pancetta elit alcatra velit. Est exercitation et pork belly pancetta. Ut nulla jowl pancetta kielbasa deserunt. Sausage cupim bacon esse in pastrami.</p>
+        <p>Labore dolor meatloaf nulla, salami sausage exercitation sirloin cupidatat fugiat occaecat. Flank corned beef ribeye deserunt elit sausage boudin, proident tail non fatback esse kielbasa. Beef shank aliqua spare ribs fatback cupim capicola alcatra ball tip excepteur sed prosciutto aute. Aliquip fatback in, pork loin ullamco pork belly chuck mollit biltong aute. Minim pork belly laboris brisket, consectetur flank dolor beef ribs esse ribeye capicola salami prosciutto pancetta. Jerky adipisicing landjaeger doner, shank hamburger andouille porchetta. Ex duis filet mignon pastrami, pancetta doner id velit meatball capicola picanha.</p>
+        <p>Sunt kielbasa tempor in landjaeger capicola adipisicing laborum. Tri-tip chuck drumstick magna alcatra. Kielbasa laborum leberkas, adipisicing sed tongue cupim hamburger elit. Sirloin boudin occaecat exercitation et in. Duis tongue turducken jowl eiusmod in.</p>
+    </div>
+    <div>
+        <h1>License Agreement</h1>
+        <p>Spicy jalapeno bacon ipsum dolor amet in tri-tip strip steak meatloaf short ribs landjaeger ham hock kielbasa shoulder spare ribs incididunt pancetta elit alcatra velit. Est exercitation et pork belly pancetta. Ut nulla jowl pancetta kielbasa deserunt. Sausage cupim bacon esse in pastrami.</p>
+        <p>Labore dolor meatloaf nulla, salami sausage exercitation sirloin cupidatat fugiat occaecat. Flank corned beef ribeye deserunt elit sausage boudin, proident tail non fatback esse kielbasa. Beef shank aliqua spare ribs fatback cupim capicola alcatra ball tip excepteur sed prosciutto aute. Aliquip fatback in, pork loin ullamco pork belly chuck mollit biltong aute. Minim pork belly laboris brisket, consectetur flank dolor beef ribs esse ribeye capicola salami prosciutto pancetta. Jerky adipisicing landjaeger doner, shank hamburger andouille porchetta. Ex duis filet mignon pastrami, pancetta doner id velit meatball capicola picanha.</p>
+        <p>Sunt kielbasa tempor in landjaeger capicola adipisicing laborum. Tri-tip chuck drumstick magna alcatra. Kielbasa laborum leberkas, adipisicing sed tongue cupim hamburger elit. Sirloin boudin occaecat exercitation et in. Duis tongue turducken jowl eiusmod in.</p>
+    </div>
+    <script src="./appconfig.js"></script>
+    <script src="./app.js"></script>
+</body>
+</html>
