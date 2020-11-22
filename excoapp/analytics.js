@@ -9,7 +9,8 @@ var user = firebase.auth().currentUser;
 firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
     var signin = document.getElementById('signin');
-    var create = document.getElementById('create');
+      var create = document.getElementById('create');
+      document.getElementById('avatar').src = user.photoURL;
     signin.style.display = "none";
     create.style.display = "none";
   } else {
