@@ -39,6 +39,11 @@ var btn = document.getElementById("myBtn");
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
+//delete fields
+var deleteEmailField = document.getElementById("deleteEmail");
+var deletePasswordField = document.getElementById("deletePassword");
+
+//username field
 var usernameField = document.getElementById("newUsername");
 
 //email fields
@@ -75,42 +80,52 @@ function deleteAccount() {
 
   var posts = db.collection("posts");
 
-  posts
-    .where("username", "==", user.displayName)
-    .get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        doc.ref
-          .delete()
-          .then(() => {
-            console.log("Success!");
+  if (deleteEmailField.value != "" && deletePasswordField.value != "") {
+    const credential = firebase.auth.EmailAuthProvider.credential(
+      deleteEmailField.value,
+      deletePasswordField.value
+    );
+    user
+      .reauthenticateWithCredential(credential)
+      .then(() => {
+        posts
+          .where("username", "==", user.displayName)
+          .get()
+          .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+              doc.ref
+                .delete()
+                .then(() => {
+                  console.log("Success!");
+                })
+                .catch(function (error) {
+                  console.error("Error deleting: ", error);
+                });
+            });
+            user
+              .delete()
+              .then(function () {
+                alert("Your account and posts have been deleted!");
+              })
+              .catch(function (error) {
+                alert(error);
+              });
           })
           .catch(function (error) {
-            console.error("Error deleting: ", error);
+            console.error("Error getting documents: ", error);
           });
+      })
+      .catch((err) => {
+        alert(err.message);
       });
-      user
-        .delete()
-        .then(function () {
-          alert("Your account and posts have been deleted!");
-        })
-        .catch(function (error) {
-          alert(error);
-        });
-    })
-    .catch(function (error) {
-      console.error("Error getting documents: ", error);
-    });
+  }
 }
 
 function updateUsername() {
   var user = firebase.auth().currentUser;
 
-  //var preUpdateTest = "";
-
   if (usernameField.value != "") {
     var name = user.displayName;
-    //preUpdateTest += "New Username: " + usernameField.value;
     user
       .updateProfile({ displayName: usernameField.value })
       .then(() => {
@@ -118,7 +133,6 @@ function updateUsername() {
       })
       .then(updatePosts(name, usernameField.value));
   }
-  //alert(preUpdateTest);
 }
 
 function updatePosts(oldName, newName) {
@@ -157,18 +171,22 @@ function updateEmail() {
       oldEmailField.value,
       passField.value
     );
-    user.reauthenticateWithCredential(credential);
-    //preUpdateTest += "New Email: " + emailField.value;
     user
-      .updateEmail(newEmailField.value)
+      .reauthenticateWithCredential(credential)
       .then(() => {
-        console.log("email: successfully updated");
+        user
+          .updateEmail(newEmailField.value)
+          .then(() => {
+            console.log("email: successfully updated");
+          })
+          .catch((err) => {
+            console.log("email: " + err.message);
+          });
       })
       .catch((err) => {
-        console.log("email: " + err.message);
+        alert(err.message);
       });
   }
-  //alert(preUpdateTest);
 }
 
 function updatePassword() {
@@ -184,19 +202,22 @@ function updatePassword() {
       emailField.value,
       oldPasswordField.value
     );
-    user.reauthenticateWithCredential(credential);
-    //preUpdateTest += "New Email: " + emailField.value;
-
     user
-      .updatePassword(newPasswordField.value)
+      .reauthenticateWithCredential(credential)
       .then(() => {
-        console.log("password: successfully updated");
+        user
+          .updatePassword(newPasswordField.value)
+          .then(() => {
+            console.log("password: successfully updated");
+          })
+          .catch((err) => {
+            console.log("password: " + err.message);
+          });
       })
       .catch((err) => {
-        console.log("password: " + err.message);
+        alert(err.message);
       });
   } else if (newPasswordField.value != newPasswordCheckField.value) {
     alert("Password Mismatch! Update failed");
   }
-  //alert(preUpdateTest);
 }
