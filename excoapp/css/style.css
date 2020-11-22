@@ -68,6 +68,8 @@ body {
 .avatar {
   width: 50px;
   height: 50px;
+  border: none;
+  border-radius: 50px;
   text-align: right;
 }
 .personalInformation {
@@ -405,6 +407,7 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.3ch;
   background: #ffffff;
+  float: left;
 }
 /* .masterProfileContainer::before {
   content: "";
@@ -481,4 +484,8 @@ body {
   max-width: 50%;
   max-height: 80%;
   contain: content;
+}
+
+#picContainer {
+  float: right;
 }
