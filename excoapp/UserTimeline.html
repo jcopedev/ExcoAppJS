@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 
 <html lang="en">
-<head>
+  <head>
     <meta charset="utf-8" />
 
     <title>Timeline</title>
@@ -20,134 +20,199 @@
     <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-auth.js"></script>
 
     <script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.js"></script>
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
     <link rel="stylesheet" href="css/style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</head>
+  </head>
 
-<body id="mainBody" onload="loadFirstPage()">
+  <body id="mainBody" onload="loadFirstPage()">
     <div>
-        <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-            <!-- Brand -->
-            <a class="navbar-brand" href="#">
-                <img src="assets/logo.png" alt="logo" class="smallLogo" />
-            </a>
+      <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <!-- Brand -->
+        <a class="navbar-brand" href="#">
+          <img src="assets/logo.png" alt="logo" class="smallLogo" />
+        </a>
 
-            <!-- Toggler/collapsibe Button -->
-            <button class="navbar-toggler"
-                    type="button"
-                    data-toggle="collapse"
-                    data-target="#collapsibleNavbar">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+        <!-- Toggler/collapsibe Button -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#collapsibleNavbar"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-            <!-- Navbar links -->
+        <!-- Navbar links -->
 
-            <div class="collapse navbar-collapse" id="collapsibleNavbar">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"></a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="UserTimeline.html">Timeline</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="UserProfile.html">My Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contactUs.html">Contact Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="signout.html">Sign Out</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="leaderboard.html">Leaderboard</a>
-                    </li>
-
-                </ul>
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><img src="assets/avatar.png" alt="Avatar" class="avatar" id="avatar" /></a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#"></a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="UserTimeline.html">Timeline</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="UserProfile.html">My Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contactUs.html">Contact Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="signout.html">Sign Out</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="leaderboard.html">Leaderboard</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#"
+                ><img
+                  src="assets/avatar.png"
+                  alt="Avatar"
+                  class="avatar"
+                  id="avatar"
+              /></a>
+            </li>
+          </ul>
+        </div>
+      </nav>
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="deletePostModal" tabindex="-1" role="dialog" aria-labelledby="deletePostModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="deletePostModalLabel">You Are About To Yeet This Post</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="postID" hidden></div>
-                <div class="modal-body">
-                    Warning: You are about to delete this message from the entire website. It will be the last time anyone ever sees it. Are you sure you want to do that? Are you prepared to face your own mortality? Who has the right over
-                    life and death? Is it you? Click the button below to find out.
-
-                </div>
-                <div class="modal-footer">
-                    <button class="float-right" id="deleteBtn" style="font-weight: bold; color: white; background-color: #666462;" data-dismiss="modal">Delete This!</button>
-                </div>
-            </div>
+    <div
+      class="modal fade"
+      id="deletePostModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="deletePostModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="deletePostModalLabel">
+              You Are About To Yeet This Post
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="postID" hidden></div>
+          <div class="modal-body">
+            Warning: You are about to delete this message from the entire
+            website. It will be the last time anyone ever sees it. Are you sure
+            you want to do that? Are you prepared to face your own mortality?
+            Who has the right over life and death? Is it you? Click the button
+            below to find out.
+          </div>
+          <div class="modal-footer">
+            <button
+              class="float-right"
+              id="deleteBtn"
+              style="font-weight: bold; color: white; background-color: #666462"
+              data-dismiss="modal"
+            >
+              Delete This!
+            </button>
+          </div>
         </div>
+      </div>
     </div>
 
-
-    <div class="container-fluid" style="margin-top:80px">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm">
-                    <div class="postingTool" id="postingTool">
-                        <div class="card" style="width: 28rem;
-          border-radius: 0px 58px 0px 58px;
-          -moz-border-radius: 0px 58px 0px 58px;
-          -webkit-border-radius: 0px 58px 0px 58px;
-          border: 0px solid #000000;
-          -webkit-box-shadow: 2px 2px 26px -9px rgba(0,0,0,0.75);
--moz-box-shadow: 2px 2px 26px -9px rgba(0,0,0,0.75);
-box-shadow: 2px 2px 26px -9px rgba(0,0,0,0.75);">
-                            <div class="card-body">
-                                <h5 class="card-title" style="color: #02D6D2; font-weight: bold;">Create Post</h5>
-                                <textarea id="mainInput" rows="4" cols="50" maxlength="500" placeholder="Share more of your thoughts...."></textarea>
-                                <div class="text-count" id="charactersRemaining">500 characters remaining...</div>
-                                <div id="Prompt Tool" class="carousel slide z-depth-1-half" data-ride="carousel" style="color: #02D6D2; font-weight: bold;">
-                                    <div class="carousel-inner">
-                                        <div class="carousel-item active">
-                                            <p>Five years from now, I will be.</p>
-                                        </div>
-                                        <div class="carousel-item">
-                                            <p>What is your biggest goal?</p>
-                                        </div>
-                                        <div class="carousel-item">
-                                            <p>Who do you admire the most?</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button class="float-right" id="save" style="font-weight: bold; color: white; background-color: #02D6D2;border-radius: 25px; padding-left: 15px; padding-right: 15px;">Post</button>
-                            </div>
-                        </div>
-                        <br/>
+    <div class="container-fluid" style="margin-top: 80px">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm">
+            <div class="postingTool" id="postingTool">
+              <div
+                class="card"
+                style="
+                  width: 28rem;
+                  border-radius: 0px 58px 0px 58px;
+                  -moz-border-radius: 0px 58px 0px 58px;
+                  -webkit-border-radius: 0px 58px 0px 58px;
+                  border: 0px solid #000000;
+                  -webkit-box-shadow: 2px 2px 26px -9px rgba(0, 0, 0, 0.75);
+                  -moz-box-shadow: 2px 2px 26px -9px rgba(0, 0, 0, 0.75);
+                  box-shadow: 2px 2px 26px -9px rgba(0, 0, 0, 0.75);
+                "
+              >
+                <div class="card-body">
+                  <h5
+                    class="card-title"
+                    style="color: #02d6d2; font-weight: bold"
+                  >
+                    Create Post
+                  </h5>
+                  <textarea
+                    id="mainInput"
+                    rows="4"
+                    cols="48"
+                    maxlength="500"
+                    placeholder="Share more of your thoughts...."
+                  ></textarea>
+                  <div class="text-count" id="charactersRemaining">
+                    500 characters remaining...
+                  </div>
+                  <div
+                    id="Prompt Tool"
+                    class="carousel slide z-depth-1-half"
+                    data-ride="carousel"
+                    style="color: #02d6d2; font-weight: bold"
+                  >
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                        <p>Five years from now, I will be.</p>
+                      </div>
+                      <div class="carousel-item">
+                        <p>What is your biggest goal?</p>
+                      </div>
+                      <div class="carousel-item">
+                        <p>Who do you admire the most?</p>
+                      </div>
                     </div>
+                  </div>
+                  <button
+                    class="float-right"
+                    id="save"
+                    style="
+                      font-weight: bold;
+                      color: white;
+                      background-color: #02d6d2;
+                      border-radius: 25px;
+                      padding-left: 15px;
+                      padding-right: 15px;
+                    "
+                  >
+                    Post
+                  </button>
                 </div>
-                <div class="col-sm">
-                    <div id="cardContainer"></div>
-                    <div id="moreContainer"></div>
-                    <script src="./appconfig.js"></script>
-                    <script src="./fullTimeline.js"></script>
-                </div>
-                <div class="col-sm">
-                </div>
+              </div>
+              <br />
             </div>
+          </div>
+          <div class="col-sm">
+            <div id="cardContainer"></div>
+            <div id="moreContainer"></div>
+            <script src="./appconfig.js"></script>
+            <script src="./fullTimeline.js"></script>
+          </div>
+          <div class="col-sm"></div>
         </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>
-
