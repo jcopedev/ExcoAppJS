@@ -19,10 +19,10 @@ var uiConfig = {
   // tosUrl and privacyPolicyUrl accept either url string or a callback
   // function.
   // Terms of service url/callback.
-  tosUrl: "<your-tos-url>",
+  tosUrl: "tos.html",
   // Privacy policy url/callback.
   privacyPolicyUrl: function () {
-    window.location.assign("<your-privacy-policy-url>");
+    window.location.assign("tos.html");
   },
 };
 
