@@ -65,6 +65,18 @@ function manageVisitor() {
     });
   }
 }
+function validateAdmin() {
+  var password = document.getElementById("pass").value;
+  console.log(password);
+  if (password === "admin123") {
+    document.getElementById("pass").value = "";
+    window.location.href = "adminTool.html";
+  } else {
+    document.getElementById("passError").innerText =
+      "wrong password try again!";
+  }
+  document.getElementById("pass").value = "";
+}
 $(document).ready(function () {
   manageVisitor();
 });

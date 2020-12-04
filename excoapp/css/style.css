@@ -388,6 +388,21 @@ body {
 .adBtn:hover {
   background-color: #343a40;
 }
+.adminBtn {
+  background-color: grey;
+  font-weight: bold;
+  border: none;
+  border-radius: 20px;
+  width: 100%;
+  color: white;
+  padding: 12px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.adminBtn:hover {
+  background-color: #343a40;
+}
 
 #userTitle {
   font-family: "Archivo", sans-serif;

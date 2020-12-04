@@ -13,6 +13,12 @@
 
     <script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.js"></script>
     <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link
       type="text/css"
       rel="stylesheet"
       href="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.css"
@@ -44,6 +50,57 @@
       >
         <i class="fas fa-ad"></i> Advertise with us
       </button>
+      <p></p>
+      <button
+        class="adminBtn"
+        id="adminBtn"
+        align="center"
+        data-toggle="modal"
+        data-target="#myModal"
+      >
+        Administrator Tool
+      </button>
+      <!-- Modal -->
+      <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">
+                &times;
+              </button>
+              <h4 class="modal-title">Admin Tool</h4>
+            </div>
+            <div class="modal-body">
+              <p>Enter the administrator password:</p>
+              <textarea
+                class="post-input"
+                id="pass"
+                rows="1"
+                cols="25"
+                placeholder="Password"
+              ></textarea>
+              <p id="passError" style="color: red"></p>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-info"
+                onclick="validateAdmin()"
+              >
+                Sign in
+              </button>
+              <button
+                type="button"
+                class="btn btn-default"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="authImgDivRight">
       <img
