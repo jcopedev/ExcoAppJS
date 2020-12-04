@@ -6,19 +6,18 @@ firebase.initializeApp(firebaseConfig);
 /*
  * https://blog.mailtrap.io/javascript-send-email/
  * ^ explains how to send emails from a SMTP server (which is likely going to be firebase)
- * 
+ *
  * https://stackoverflow.com/questions/7381150/how-to-send-an-email-from-javascript
  * ^ has some input too, basically saying "you can't really send an email through just javascript"
- * 
- * 
- * There's infrastructure in place to send emails via firebase, we'd have to upgrade to a paid plan though 
+ *
+ *
+ * There's infrastructure in place to send emails via firebase, we'd have to upgrade to a paid plan though
  * https://firebase.google.com/products/extensions/firestore-send-email
- * 
+ *
  * (Which, if this was an actual product, we would likely do.)
- * 
+ *
  * Since the functionality that would include sending out emails isn't in our predicted workload, these are just here to give some reference to what we can do.
  **/
-
 
 // Initialize Cloud Firestore through Firebase
 var db = firebase.firestore();
@@ -28,14 +27,14 @@ var username;
 
 firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
-    var signin = document.getElementById('signin');
-    var create = document.getElementById('create');
-      username = user.displayName;
-      document.getElementById('avatar').src = user.photoURL;
+    var signin = document.getElementById("signin");
+    var create = document.getElementById("create");
+    username = user.displayName;
+    document.getElementById("avatar").src = user.photoURL;
     signin.style.display = "none";
     create.style.display = "none";
   } else {
-    var signout = document.getElementById('signout');
+    var signout = document.getElementById("signout");
     username = "Anonymous";
     signout.style.display = "none";
   }
