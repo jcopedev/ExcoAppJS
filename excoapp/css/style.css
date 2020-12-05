@@ -504,3 +504,8 @@ body {
 #picContainer {
   float: right;
 }
+.mailto {
+  display: block;
+  width: 100px;
+  height: 20px;
+}
