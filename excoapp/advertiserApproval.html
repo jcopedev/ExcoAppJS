@@ -32,75 +32,101 @@
   </head>
 
   <body id="mainBody" onload="loadFirstPage()">
-      <title>Advertiser Approval</title>
-      <div>
-          <nav class="navbar navbar-expand-md bg-dark navbar-dark" class="shift">
-              <!-- Brand -->
-              <a class="navbar-brand" href="#">
-                  <img src="assets/logo.png" alt="logo" class="smallLogo" />
-              </a>
+    <title>Advertiser Approval</title>
+    <div>
+      <nav class="navbar navbar-expand-md bg-dark navbar-dark" class="shift">
+        <!-- Brand -->
+        <a class="navbar-brand" href="#">
+          <img src="assets/logo.png" alt="logo" class="smallLogo" />
+        </a>
 
-              <!-- Toggler/collapsibe Button -->
-              <button class="navbar-toggler"
-                      type="button"
-                      data-toggle="collapse"
-                      data-target="#collapsibleNavbar">
-                  <span class="navbar-toggler-icon"></span>
-              </button>
+        <!-- Toggler/collapsibe Button -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#collapsibleNavbar"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-              <!-- Navbar links -->
+        <!-- Navbar links -->
 
-              <div class="collapse navbar-collapse" id="collapsibleNavbar">
-                  <ul class="navbar-nav mr-auto">
-                      <li class="nav-item">
-                          <a class="nav-link" href="index.html">Admin Tool</a>
-                      </li>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Admin Tool</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#"
+                ><img
+                  src="assets/avatar.png"
+                  alt="Avatar"
+                  class="avatar"
+                  id="avatar"
+              /></a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
 
-                  </ul>
-                  <ul class="navbar-nav">
-                      <li class="nav-item">
-                          <a class="nav-link" href="#"><img src="assets/avatar.png" alt="Avatar" class="avatar" id="avatar" /></a>
-                      </li>
-                  </ul>
-              </div>
-          </nav>
-      </div>
-
-      <!-- Modal -->
-      <div class="modal fade" id="cantDeleteModal" tabindex="-1" role="dialog" aria-labelledby="cantDeleteModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                  <div class="modal-header">
-                      <h5 class="modal-title" id="cantDeleteModalLabel">You Shall Not Delete</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                      </button>
-                  </div>
-                  <div class="modal-body">
-                      You must sign in to delete the message. Once you sign in, you can delete anything you want. Except me. You can never be rid of me.
-                  </div>
-                  <div class="modal-footer">
-                      <button type="button" id="deleteconfirm" class="btn btn-secondary" data-dismiss="modal">Got It</button>
-                  </div>
-              </div>
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="cantDeleteModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="cantDeleteModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="cantDeleteModalLabel">
+              You Shall Not Delete
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
-      </div>
-      <div class="container-fluid" style="margin-top:80px">
-          <div class="container">
-              <div class="row">
-                  <div class="col-sm">
-                  </div>
-                  <div class="col-sm">
-                      <div id="cardContainer"></div>
-                      <div id="moreContainer"></div>
-                      <script src="./appconfig.js"></script>
-                      <script src="./advertiserApproval.js"></script>
-                  </div>
-                  <div class="col-sm">
-                  </div>
-              </div>
+          <div class="modal-body">
+            You must sign in to delete the message. Once you sign in, you can
+            delete anything you want. Except me. You can never be rid of me.
           </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              id="deleteconfirm"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Got It
+            </button>
+          </div>
+        </div>
       </div>
+    </div>
+    <div class="container-fluid" style="margin-top: 80px">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm"></div>
+          <div class="col-sm">
+            <div id="cardContainer"></div>
+            <div id="moreContainer"></div>
+            <script src="./appconfig.js"></script>
+            <script src="./advertiserApproval.js"></script>
+          </div>
+          <div class="col-sm"></div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
-

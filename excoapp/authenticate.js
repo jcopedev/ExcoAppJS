@@ -70,7 +70,7 @@ function validateAdmin() {
   console.log(password);
   if (password === "admin123") {
     document.getElementById("pass").value = "";
-    window.location.href = "adminTool.html";
+    window.location.href = "AdvertiserApproval.html";
   } else {
     document.getElementById("passError").innerText =
       "wrong password try again!";
