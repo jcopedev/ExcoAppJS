@@ -19,9 +19,9 @@ firebase.auth().onAuthStateChanged(function (user) {
 
     //this wasn't working outside this scope not sure why
     document.getElementById("emailContainer").innerHTML += email;
-      document.getElementById("picContainerImg").src = photoUrl;
-      //window.location.href = "./userProfile.html";
-      document.getElementById('avatar').src = photoUrl;
+    document.getElementById("picContainerImg").src = photoUrl;
+    //window.location.href = "./userProfile.html";
+    document.getElementById("avatar").src = photoUrl;
   } else {
     alert("not signed in");
     window.location.href = "./index.html";
@@ -77,47 +77,103 @@ window.onclick = function (event) {
 function deleteAccount() {
   var user = firebase.auth().currentUser;
   var db = firebase.firestore();
+  var method;
+  var credential;
+  user.providerData.forEach(function (profile) {
+    method = profile.providerId;
+  });
 
   var posts = db.collection("posts");
 
   if (deleteEmailField.value != "" && deletePasswordField.value != "") {
-    const credential = firebase.auth.EmailAuthProvider.credential(
-      deleteEmailField.value,
-      deletePasswordField.value
-    );
-    user
-      .reauthenticateWithCredential(credential)
-      .then(() => {
-        posts
-          .where("userID", "==", user.uid)
-          .get()
-          .then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-              doc.ref
+    if (method == "password") {
+      credential = firebase.auth.EmailAuthProvider.credential(
+        deleteEmailField.value,
+        deletePasswordField.value
+      );
+      user
+        .reauthenticateWithCredential(credential)
+        .then(() => {
+          posts
+            .where("userID", "==", user.uid)
+            .get()
+            .then((querySnapshot) => {
+              querySnapshot.forEach((doc) => {
+                doc.ref
+                  .delete()
+                  .then(() => {
+                    console.log("Success!");
+                  })
+                  .catch(function (error) {
+                    console.error("Error deleting: ", error);
+                  });
+              });
+              user
                 .delete()
-                .then(() => {
-                  console.log("Success!");
+                .then(function () {
+                  alert("Your account and posts have been deleted!");
                 })
                 .catch(function (error) {
-                  console.error("Error deleting: ", error);
+                  alert(error);
                 });
+            })
+            .catch(function (error) {
+              console.error("Error getting documents: ", error);
             });
-            user
-              .delete()
-              .then(function () {
-                alert("Your account and posts have been deleted!");
-              })
-              .catch(function (error) {
-                alert(error);
+        })
+        .catch((err) => {
+          alert(err.message);
+        });
+    } else if (method == "google.com") {
+      // Creates the provider object.
+      var provider = new firebase.auth.GoogleAuthProvider();
+      // Reauthenticate with popup:
+      user
+        .reauthenticateWithPopup(provider)
+        .then(
+          function (result) {
+            // The firebase.User instance:
+            var user = result.user;
+            // The Facebook firebase.auth.AuthCredential containing the Facebook
+            // access token:
+            credential = result.credential;
+          },
+          function (error) {
+            // An error happened.
+          }
+        )
+        .then(() => {
+          posts
+            .where("userID", "==", user.uid)
+            .get()
+            .then((querySnapshot) => {
+              querySnapshot.forEach((doc) => {
+                doc.ref
+                  .delete()
+                  .then(() => {
+                    console.log("Success!");
+                  })
+                  .catch(function (error) {
+                    console.error("Error deleting: ", error);
+                  });
               });
-          })
-          .catch(function (error) {
-            console.error("Error getting documents: ", error);
-          });
-      })
-      .catch((err) => {
-        alert(err.message);
-      });
+              user
+                .delete()
+                .then(function () {
+                  alert("Your account and posts have been deleted!");
+                })
+                .catch(function (error) {
+                  alert(error);
+                });
+            })
+            .catch(function (error) {
+              console.error("Error getting documents: ", error);
+            });
+        })
+        .catch((err) => {
+          alert(err.message);
+        });
+    }
   }
 }
 
