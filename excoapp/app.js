@@ -19,26 +19,17 @@ firebase.auth().onAuthStateChanged(function (user) {
         //alert(email);
         //alert(photoUrl);
         document.getElementById('avatar').src = photoUrl;
+        var signin = document.getElementById('signin');
+        signin.style.display = "none";
     } else {
-        alert("not signed in");
+        // alert("not signed in");
+        var signout = document.getElementById('signout');
+        signout.style.display = "none";
     }
 });
 
-
 const inputTextField = document.querySelector("#mainInput");
 const saveButton = document.querySelector("#saveconfirm");
-
-var user = firebase.auth().currentUser;
-
-firebase.auth().onAuthStateChanged(function (user) {
-  if (user) {
-    var signin = document.getElementById('signin');
-    signin.style.display = "none";
-  } else {
-    var signout = document.getElementById('signout');
-    signout.style.display = "none";
-  }
-});
 
 saveButton.addEventListener("click", function () {
   const textToSave = inputTextField.value.replace(/[^a-zA-Z ]/g, "");

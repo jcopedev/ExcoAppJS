@@ -39,13 +39,14 @@ firebase.auth().onAuthStateChanged(function (user) {
     //alert(photoUrl);
     document.getElementById('avatar').src = photoUrl;
   } else {
-    alert("not signed in");
+    // alert("not signed in");
     window.location.href = "./limitedTimeline.html";
   }
 });
 
 const inputTextField = document.querySelector("#mainInput");
-const saveButton = document.querySelector("#save");
+const saveButton = document.querySelector("#saveconfirm");
+const countRemaining = document.getElementById("charactersRemaining");
 
 saveButton.addEventListener("click", function () {
   const textToSave = inputTextField.value.replace(/[^a-zA-Z-z0-9 ]/g, "");
@@ -64,10 +65,8 @@ saveButton.addEventListener("click", function () {
     })
     .then(function (docRef) {
       console.log("Document written with ID: ", docRef.id);
-      //alert(
-      //"Your message is currently at the very bottom of the message. You can add as many messages as you like, and you can also delete any messages that you don't like."
-      //);
-      alert("added");
+      inputTextField.value = "";
+      countRemaining.textContent = "500 characters remaining...";
       //window.location.href = "UserTimeline.html"; //relative to domain
       //can be change to "LimitedTimeline.html" for testing
     })
@@ -132,6 +131,7 @@ function deletePost(postId, message) {
   hidePost(postId);
   condescend();
 }
+
 //Hella Jank way of getting this working
 $('#deletePostModal').on('show.bs.modal', function (event) {
     var myVal = $(event.relatedTarget).data('val');
@@ -143,6 +143,8 @@ $("#deletePostModal").on('click', '#deleteBtn', function () {
     deletePost(midVal, "yeetTheWeak");
     console.log(midVal);
 });
+
+
 function makeCard(postId, userName, message, excoCredits) {
   htmlString = `<div class = "divBreak" id = ${postId} >
 					<div class="card" style="width: 28rem;  background-color: #41403E; border:solid 7px #41403E; border-radius: 25px;  box-shadow: 20px 38px 34px -26px hsla(0,0%,0%,.2);
@@ -311,10 +313,9 @@ $(window).scroll(function () {
 var el;
 
 function countCharacters(e) {
-  var textEntered, countRemaining, counter;
+  var textEntered, counter;
   textEntered = document.getElementById("mainInput").value;
   counter = 500 - textEntered.length;
-  countRemaining = document.getElementById("charactersRemaining");
   countRemaining.textContent = counter + " characters remaining...";
 }
 el = document.getElementById("mainInput");

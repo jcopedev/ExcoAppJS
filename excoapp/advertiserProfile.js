@@ -23,7 +23,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     //window.location.href = "./userProfile.html";
     document.getElementById("avatar").src = photoUrl;
   } else {
-    alert("not signed in");
+    // alert("not signed in");
     window.location.href = "./index.html";
   }
 });

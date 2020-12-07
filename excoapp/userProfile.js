@@ -23,7 +23,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     //window.location.href = "./userProfile.html";
     document.getElementById("avatar").src = photoUrl;
   } else {
-    alert("not signed in");
+    // alert("not signed in");
     window.location.href = "./index.html";
   }
 });
@@ -56,6 +56,19 @@ var oldPasswordField = document.getElementById("oldPass");
 var newPasswordField = document.getElementById("newPass");
 var newPasswordCheckField = document.getElementById("newPassCheck");
 var emailField = document.getElementById("email");
+
+function onModalClose() {
+  deleteEmailField.value = "";
+  deletePasswordField.value = "";
+  usernameField.value = "";
+  newEmailField.value = "";
+  oldEmailField.value = "";
+  passField.value = "";
+  oldPasswordField.value = "";
+  newPasswordField.value = "";
+  newPasswordCheckField.value = "";
+  emailField.value = "";
+}
 
 // When the user clicks on the button, open the modal
 btn.onclick = function () {
@@ -103,6 +116,7 @@ function deleteAccount() {
                   .delete()
                   .then(() => {
                     console.log("Success!");
+                    onModalClose();
                   })
                   .catch(function (error) {
                     console.error("Error deleting: ", error);
@@ -123,6 +137,7 @@ function deleteAccount() {
         })
         .catch((err) => {
           alert(err.message);
+          onModalClose();
         });
     } else if (method == "google.com") {
       // Creates the provider object.
@@ -152,6 +167,7 @@ function deleteAccount() {
                   .delete()
                   .then(() => {
                     console.log("Success!");
+                    onModalClose();
                   })
                   .catch(function (error) {
                     console.error("Error deleting: ", error);
@@ -172,6 +188,7 @@ function deleteAccount() {
         })
         .catch((err) => {
           alert(err.message);
+          onModalClose();
         });
     }
   }
@@ -186,6 +203,10 @@ function updateUsername() {
       .updateProfile({ displayName: usernameField.value })
       .then(() => {
         console.log("username: successfully updated");
+        name = usernameField.value;
+        document.getElementById("usernameContainer").innerHTML = name;
+        document.getElementById("titleContainer").innerHTML = name;
+        onModalClose();
       })
       .then(updatePosts(name, usernameField.value));
   }
@@ -204,14 +225,17 @@ function updatePosts(oldName, newName) {
           .update({ username: newName })
           .then(() => {
             console.log("Success!");
+            onModalClose();
           })
           .catch(function (error) {
             console.error("Error updating: ", error);
+            onModalClose();
           });
       });
     })
     .catch(function (error) {
       console.error("Error getting documents: ", error);
+      onModalClose();
     });
 }
 
@@ -234,13 +258,16 @@ function updateEmail() {
           .updateEmail(newEmailField.value)
           .then(() => {
             console.log("email: successfully updated");
+            onModalClose();
           })
           .catch((err) => {
             console.log("email: " + err.message);
+            onModalClose();
           });
       })
       .catch((err) => {
         alert(err.message);
+        onModalClose();
       });
   }
 }
@@ -265,15 +292,19 @@ function updatePassword() {
           .updatePassword(newPasswordField.value)
           .then(() => {
             console.log("password: successfully updated");
+            onModalClose();
           })
           .catch((err) => {
             console.log("password: " + err.message);
+            onModalClose();
           });
       })
       .catch((err) => {
         alert(err.message);
+        onModalClose();
       });
   } else if (newPasswordField.value != newPasswordCheckField.value) {
     alert("Password Mismatch! Update failed");
+    onModalClose();
   }
 }
